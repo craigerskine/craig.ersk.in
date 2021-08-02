@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en" class="min-h-screen bg(gray-900 grid fixed)" hidden>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Me = Craig Erskine</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;400;700&amp;display=swap" rel="stylesheet" />
+    <style>
+      @media (prefers-reduced-motion: no-preference){
+        html { scroll-behavior: smooth; }
+      }
+    </style>
+  </head>
+  <body class="min-h-screen text-gray-400">
+
+    <div class="page min-h-screen" v-cloak>
+      <main>
+        <ul class="space-x-3 flex fixed top-3 right-3 z-50">
+          <li><button type="button" class="p-2 ring(1 inset current) outline-none leading-none block rounded transition duration-300 hover:(text-white) focus:(text-white outline-none)" @click="window.scrollBy(0, -document.documentElement.clientHeight)"><i class="fal fa-arrow-up"></i></button></li>
+          <li><button type="button" class="p-2 ring(1 inset current) outline-none leading-none block rounded transition duration-300 hover:(text-white) focus:(text-white outline-none)" @click="window.scrollBy(0, document.documentElement.clientHeight)"><i class="fal fa-arrow-down"></i></button></li>
+        </ul>
+        <page-section bg="assets/img/bio-craig.png">
+          <a href="https://craigerskine.com/" class="p-4 opacity-50 transition duration-300 hover:(opacity-100) focus:(opacity-100 outline-none) lg:(space-x-12 flex items-center)">
+            <section><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" class="mx-auto my-3 p-3 w-24 h-24 fill-current text-white block lg:(p-4 w-48 h-48) animate-throb"><title>Craig Erskine logo</title><g fill-rule="evenodd"><path d="M42.747122,81.9990174 C58.9655226,93.344021 78.7054673,100 100,100 C121.294533,100 141.034477,93.344021 157.252882,81.9990144 C155.193825,75.4436177 152.039977,69.3730608 148.005622,64.0016292 C134.634094,74.0472141 118.012221,80 100,80 C81.9877797,80 65.3659077,74.0472146 51.9943761,64.0016357 C47.9600255,69.3730625 44.8061777,75.4436199 42.747122,81.9990174 Z" opacity=".25"></path><path d="M100,200 C44.7715223,200 0,155.228478 0,100 C0,44.7715223 44.7715223,0 100,0 C137.038592,0 169.374042,20.1365308 186.656057,50.0592979 C182.902635,56.5581213 178.439143,62.5953278 173.371615,68.0648818 C161.041547,39.7757571 132.830213,20 100,20 C55.8172178,20 20,55.8172178 20,100 C20,144.182782 55.8172178,180 100,180 C132.767816,180 160.934295,160.299342 173.301142,132.096319 C178.366895,137.552678 182.830857,143.575528 186.587453,150.059298 C169.288565,179.916659 136.989642,200 100,200 Z"></path></g></svg></section>
+            <section>
+              <h1 class="mb-3 font-black leading-tight text(4xl gray-200) lg:(mb-6 text-[calc(3vw+3vh+.5vmin)])">
+                {{ intro_fname }}
+                <b class="opacity-50">{{ intro_lname }}</b>
+              </h1>
+              <p class="max-w-sm lg:(max-w-2xl text(2xl) leading-normal)">
+                I'm a <template v-for="(item, index) in interests"><template v-if="index == interests.length - 1">and </template><b class="text-gray-200">{{ item.title }}</b><template v-if="index !== interests.length - 1">, </template></template>
+                who also has a deep passion for <template v-for="(item, index) in passion"><template v-if="index == passion.length - 1">and </template><b class="text-gray-200">{{ item.title }}</b><template v-if="index !== passion.length - 1">, </template></template>.
+              </p>
+            </section>
+          </a>
+        </page-section>
+        <page-section bg="assets/img/camera.jpg">
+          <page-heading sub="Humans & Non-Humans">Family</page-heading>
+          <article class="p-4 space-y-10">
+            <template v-for="(item, index) in family">
+              <ul class="p-4 -space-x-3 flex justify-center">
+                <li v-for="(item, index) in item.list" :class="['max-w-[350px] w-1/5 relative shadow-flat transition-all duration-300 transform hover:(scale-125 rotate-0 z-10) lg:(w-full)', ((index % 2 == 0) ? 'rotate-3' : '-rotate-1')]">
+                  <figure class="p-2 bg-white rounded">
+                    <img :src="'assets/img/bio-'+ slug(item.title) +'.jpg'" :alt="item.title" class="rounded" />
+                    <figcaption class="pt-2 pb-1 px-2 space-x-3 font-bold text(base gray-700) hidden flex-wrap items-center lg:(text-lg flex)">
+                      <template v-if="item.relation"><i :class="['fas text-2xl', ((item.relation == 'Wife') ? 'fa-rings-wedding text-pink-500' : ''), ((item.relation == 'Daughter') ? 'fa-graduation-cap text-blue-500' : '')]"></i></template>
+                      <b class="flex-1">{{ item.title }}</b>
+                      <template v-if="item.passed"><i class="fad fa-angel text-gray-400" title="Passed"></i></template>
+                      <small v-if="item.relation" class="font-normal uppercase text(xs gray-400)">{{ item.relation }}</small>
+                    </figcaption>
+                  </figure>
+                </li>
+              </ul>
+            </template>
+          </article>
+        </page-section>
+        <page-section>
+          <page-heading sub="Music & TV">Media</page-heading>
+          <article class="w-full h-screen flex flex-col">
+            <div v-for="(type, index) in media" class="w-full h-full flex-1 flex">
+              <a :href="item.href" v-for="(item, index) in type.list" :class="['flex bg('+ ((type.title == 'Audio') ? 'blue' : 'green') +'-500 opacity-'+ (index + 1) +'0) relative opacity-30 transition-all duration-300', ((type.title == 'Audio') ? 'w-1/3 hover:(w-1/2 z-30 opacity-100)' : 'w-1/2 hover:(w-full z-30 opacity-100)')]">
+                <figure class="w-full bg(cover center) relative" :style="'background-image: url(\'assets/img/'+ slug(type.title) +'-'+ slug(item.title) +'.jpg\')'">
+                  <figcaption class="p-2 bg(gradient-to-b) from-transparent to-black text(xs right white opacity-80) font-black absolute bottom-0 inset-x-0 lg:(p-8 text-2xl)">{{ item.title }}</figcaption>
+                </figure>
+              </a>
+            </div>
+          </article>
+        </page-section>
+        <page-section>
+          <page-heading sub="Geekery">Book</page-heading>
+          <article class="w-full min-h-screen flex">
+            <a href="https://craigerskine.com/buy/1430216182" class="group flex-1 flex relative opacity-30 transition duration-300 transform scale-90 hover:(z-30 opacity-100 scale-100) focus:(z-30 opacity-100 scale-100)"><figure class="bg(center cover) flex-1 rounded-lg" style="background-image: url('assets/img/book.jpg');"></figure></a>
+            <a href="https://craigerskine.com/buy/1430216182" class="group flex-1 flex relative opacity-30 transition duration-300 transform scale-90 hover:(z-30 opacity-100 scale-100) focus:(z-30 opacity-100 scale-100)"><figure class="bg(center cover) flex-1 rounded-lg" style="background-image: url('assets/img/book-web-920.jpg');"></figure></a>
+          </article>
+        </page-section>
+        <page-section bg="assets/img/bg-art.jpg">
+          <page-heading sub="Sketches">Art</page-heading>
+          <article>
+            [sketches]
+          </article>
+        </page-section>
+        <page-section bg="assets/img/bg-games.jpg">
+          <page-heading sub="Geekery">Games</page-heading>
+          <article>
+            [case project | oe prefs | unhinged gba | lom | pxl]
+          </article>
+        </page-section>
+        <page-section bg="assets/img/bg-kb.jpg">
+          <page-heading sub="Geekery">Keyboards</page-heading>
+          <article>
+            [gear]
+          </article>
+        </page-section>
+        <page-section bg="assets/img/bg-guitar.jpg">
+          <page-heading sub="Hobby">Guitar</page-heading>
+          <article>
+            [gear]
+          </article>
+        </page-section>
+        <page-section bg="assets/img/craig-erskine-huh.png">
+          <page-heading>End of Line</page-heading>
+          <article>
+            <ul class="text-[calc(5vw+5vh+2vmin)] inline-flex items-center space-x-12">
+              <li v-for="(item, index) in soc">
+                <a :href="item.href" :class="'group text('+ item.color +' opacity-70) block relative transition duration-300 hover:(text-opacity-100 animate-blob) focus:(text-opacity-100 animate-blob)'">
+                  <template v-if="item.title == 'Craig Erskine'">
+                    <i :class="'fak fa-fw fa-ce'"></i>
+                  </template>
+                  <template v-else>
+                    <i :class="'fab fa-fw fa-'+ item.ico"></i>
+                  </template>
+                  <b class="mt-2 px-3 py-2 bg(black opacity-75) text(sm gray-200) truncate pointer-events-none absolute -top-10 left-1/2 rounded opacity-0 shadow-2xl transform -translate-x-1/2 transition-all duration-300 group-hover:(mt-4 opacity-100) group-focus:(mt-4 opacity-100)">{{ item.title }} <i class="block not-italic text-xs opacity-50">{{ item.sub }}</i></b>
+                </a>
+              </li>
+            </ul>
+          </article>
+        </page-section>
+      </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/combine/npm/twind/twind.umd.js,npm/twind/observe/observe.umd.js,npm/twind/colors/colors.umd.js"></script>
+    <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+    <script src="https://kit.fontawesome.com/6d6156d427.js" crossorigin="anonymous"></script>
+    <script>
+      // components
+      Vue.component('page-section', {
+        template: `
+          <section class="min-h-screen flex flex-col items-center justify-center relative overflow-hidden">
+            <slot></slot>
+            <div class="scene bg(fixed cover center) absolute inset-0 z-[-1] opacity-10" :style="((bg) ? 'background-image: url('+ bg +')' : '')"></div>
+          </section>
+        `,
+        props: {
+          bg: String,
+        },
+      });
+      Vue.component('page-heading', {
+        template: `
+          <h2 class="font-black text(3xl gray-200) absolute top-5 left-5 z-20 md:(text-[calc(3vw+3vh+.5vmin)] top-16 left-16)">
+            <slot></slot>
+            <small class="text-lg uppercase block opacity-50 md:(pt-[calc(.66vw+.66vh+.66vmin)])">{{ sub }}</small>
+          </h2>
+        `,
+        props: {
+          sub: String,
+        },
+      });
+
+      // data
+      var app = new Vue({
+        el: '.page',
+        data() {
+          return {
+            intro_fname: 'Craig',
+            intro_lname: 'Erskine',
+            interests: [
+              { title: 'husband', },
+              { title: 'father', },
+              { title: 'artist', },
+              { title: 'designer', },
+              { title: 'gamer', },
+              { title: 'musician', },
+              { title: 'author', },
+            ],
+            passion: [
+              { title: 'web development', },
+              { title: 'UX design', },
+            ],
+            family: [
+              {
+                title: 'Humans',
+                list: [
+                  { title: 'Lori', relation: 'Wife', },
+                  { title: 'Emily', relation: 'Daughter', },
+                ],
+              },
+              {
+                title: 'Non-Humans',
+                list: [
+                  { title: 'Polly', },
+                  { title: 'Marby', },
+                  { title: 'Lilly', passed: true, },
+                  { title: 'Regean', passed: true, },
+                ],
+              },
+            ],
+            media: [
+              {
+                title: 'Audio',
+                type: 'Prog / Tech',
+                list: [
+                  { title: 'Dream Theater', href: 'https://dreamtheater.net/', },
+                  { title: 'Animals as Leaders', href: 'https://animalsasleaders.org/', },
+                  { title: 'McRocklin', href: 'https://mcrocklin.com/', },
+                ],
+              },
+              {
+                title: 'Video',
+                type: 'SciFi',
+                list: [
+                  { title: 'MST3K', href: 'https://www.rifftrax.com/mst3k', },
+                  { title: 'Farscape', href: 'https://imdb.com/title/tt0187636/', },
+                ],
+              },
+            ],
+            soc: [
+              {
+                title: 'Craig Erskine',
+                sub: 'My Website',
+                href: 'https://craigerskine.com/',
+                color: 'blue-400',
+              },
+              {
+                title: 'Dribbble',
+                sub: 'Design Snippets',
+                href: 'https://dribbble.com/craigerskine/',
+                ico: 'dribbble',
+                color: 'pink-500',
+              },
+              {
+                title: 'Github',
+                sub: 'Code Projects',
+                href: 'https://github.com/craigerskine/',
+                ico: 'github',
+                color: 'gray-200',
+              },
+            ],
+          }
+        },
+        methods: {
+          slug: function(text) {
+            return text.toString().toLowerCase()
+            .replace(/\s+/g, '-')           // Replace spaces with -
+            .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
+            .replace(/\-\-+/g, '-')         // Replace multiple - with single -
+            .replace(/^-+/, '')             // Trim - from start of text
+            .replace(/-+$/, '');            // Trim - from end of text
+          },
+        },
+      });
+
+      twind.setup({
+        mode: "silent",
+        theme: {
+          extend: {
+            colors: {
+              gray: twindColors.gray,
+            },
+            fontFamily: {
+              sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', '"Helvetica Neue"', 'Arial', '"Noto Sans"', 'sans-serif', '"Apple Color Emoji"', '"Segoe UI Emoji"', '"Segoe UI Symbol"', '"Noto Color Emoji"'],
+            },
+            boxShadow: {
+              'flat': '0 0 15px 1px rgba(0,0,0,.66)',
+            },
+            keyframes: {
+              'anim_throb': {
+                '0%': { transform: 'scale(1)' },
+                '50%': { transform: 'scale(1.1)' },
+                '100%': { transform: 'scale(1.001)' },
+              },
+              blob: {
+                '15%': { 'transform-origin': 'center center', transform: 'scale(1.4, 1.2)', },
+                '40%': { 'transform-origin': 'center center', transform: 'scale(.9, .9)', },
+                '75%': { 'transform-origin': 'center center', transform: 'scale(1.08, 1)', },
+                '100%': { 'transform-origin': 'center center', transform: 'scale(1, 1)', },
+              },
+            },
+            animation: {
+              'throb': 'anim_throb 3s ease-in-out infinite',
+              'blob': 'blob .3s ease-in-out',
+            },
+          },
+        },
+      })
+      twind.tw(() => ({
+        '@global': {
+          '.bg-grid': { 'background-image': 'url("data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 4 4\' width=\'4\' height=\'4\'><rect x=\'0\' y=\'0\' width=\'2\' height=\'2\' fill=\'rgba(1,0,32,.33)\'></rect></svg>")', },
+          '.scene': { 'transform': 'translateY(var(--translateY))', 'will-change': 'transform', },
+          //':root [v-cloak]': { '@apply': 'hidden', },
+        }
+      }))
+      twindObserve.observe(document.documentElement);
+      document.documentElement.removeAttribute('hidden');
+
+    </script>
+
+  </body>
+</html>
