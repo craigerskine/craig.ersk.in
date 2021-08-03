@@ -18,11 +18,11 @@
     <div class="page min-h-screen" v-cloak>
       <main>
         <ul class="space-x-3 flex fixed top-3 right-3 z-50">
-          <li><button type="button" class="p-2 ring(1 inset current) outline-none leading-none block rounded transition duration-300 hover:(text-white) focus:(text-white outline-none)" @click="window.scrollBy(0, -document.documentElement.clientHeight)"><i class="fal fa-arrow-up"></i></button></li>
-          <li><button type="button" class="p-2 ring(1 inset current) outline-none leading-none block rounded transition duration-300 hover:(text-white) focus:(text-white outline-none)" @click="window.scrollBy(0, document.documentElement.clientHeight)"><i class="fal fa-arrow-down"></i></button></li>
+          <li><button type="button" class="p-2 ring(1 inset current) outline-none leading-none block rounded transition duration-100 hover:(text-white) focus:(text-white outline-none)" @click="window.scrollBy(0, -document.documentElement.clientHeight)"><i class="fal fa-arrow-up"></i></button></li>
+          <li><button type="button" class="p-2 ring(1 inset current) outline-none leading-none block rounded transition duration-100 hover:(text-white) focus:(text-white outline-none)" @click="window.scrollBy(0, document.documentElement.clientHeight)"><i class="fal fa-arrow-down"></i></button></li>
         </ul>
         <page-section bg="assets/img/bio-craig.png">
-          <a href="https://craigerskine.com/" class="p-4 opacity-50 transition duration-300 hover:(opacity-100) focus:(opacity-100 outline-none) lg:(space-x-12 flex items-center)">
+          <a href="https://craigerskine.com/" class="p-4 opacity-50 transition duration-100 hover:(opacity-100) focus:(opacity-100 outline-none) lg:(space-x-12 flex items-center)">
             <section><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" class="mx-auto my-3 p-3 w-24 h-24 fill-current text-white block lg:(p-4 w-48 h-48) animate-throb"><title>Craig Erskine logo</title><g fill-rule="evenodd"><path d="M42.747122,81.9990174 C58.9655226,93.344021 78.7054673,100 100,100 C121.294533,100 141.034477,93.344021 157.252882,81.9990144 C155.193825,75.4436177 152.039977,69.3730608 148.005622,64.0016292 C134.634094,74.0472141 118.012221,80 100,80 C81.9877797,80 65.3659077,74.0472146 51.9943761,64.0016357 C47.9600255,69.3730625 44.8061777,75.4436199 42.747122,81.9990174 Z" opacity=".25"></path><path d="M100,200 C44.7715223,200 0,155.228478 0,100 C0,44.7715223 44.7715223,0 100,0 C137.038592,0 169.374042,20.1365308 186.656057,50.0592979 C182.902635,56.5581213 178.439143,62.5953278 173.371615,68.0648818 C161.041547,39.7757571 132.830213,20 100,20 C55.8172178,20 20,55.8172178 20,100 C20,144.182782 55.8172178,180 100,180 C132.767816,180 160.934295,160.299342 173.301142,132.096319 C178.366895,137.552678 182.830857,143.575528 186.587453,150.059298 C169.288565,179.916659 136.989642,200 100,200 Z"></path></g></svg></section>
             <section>
               <h1 class="mb-3 font-black leading-tight text(4xl gray-200) lg:(mb-6 text-[calc(3vw+3vh+.5vmin)])">
@@ -41,7 +41,7 @@
           <article class="p-4 space-y-10">
             <template v-for="(item, index) in family">
               <ul class="p-4 -space-x-3 flex justify-center">
-                <li v-for="(item, index) in item.list" :class="['max-w-[350px] w-1/5 relative shadow-flat transition-all duration-300 transform hover:(scale-125 rotate-0 z-10) lg:(w-full)', ((index % 2 == 0) ? 'rotate-3' : '-rotate-1')]">
+                <li v-for="(item, index) in item.list" :class="['max-w-[350px] w-1/5 relative shadow-flat transition-all duration-100 transform hover:(scale-125 rotate-0 z-10) lg:(w-full)', ((index % 2 == 0) ? 'rotate-3' : '-rotate-1')]">
                   <figure class="p-2 bg-white rounded">
                     <img :src="'assets/img/bio-'+ slug(item.title) +'.jpg'" :alt="item.title" class="rounded" />
                     <figcaption class="pt-2 pb-1 px-2 space-x-3 font-bold text(base gray-700) hidden flex-wrap items-center lg:(text-lg flex)">
@@ -60,7 +60,7 @@
           <page-heading sub="Music & TV">Media</page-heading>
           <article class="w-full h-screen flex flex-col">
             <div v-for="(type, index) in media" class="w-full h-full flex-1 flex">
-              <a :href="item.href" v-for="(item, index) in type.list" :class="['flex bg('+ ((type.title == 'Audio') ? 'blue' : 'green') +'-500 opacity-'+ (index + 1) +'0) relative opacity-30 transition-all duration-300', ((type.title == 'Audio') ? 'w-1/3 hover:(w-1/2 z-30 opacity-100)' : 'w-1/2 hover:(w-full z-30 opacity-100)')]">
+              <a :href="item.href" v-for="(item, index) in type.list" :class="['flex bg('+ ((type.title == 'Audio') ? 'blue' : 'green') +'-500 opacity-'+ (index + 1) +'0) relative opacity-30 transition-all duration-200', ((type.title == 'Audio') ? 'w-1/3 hover:(w-1/2 z-30 opacity-100)' : 'w-1/2 hover:(w-full z-30 opacity-100)')]">
                 <figure class="w-full bg(cover center) relative" :style="'background-image: url(\'assets/img/'+ slug(type.title) +'-'+ slug(item.title) +'.jpg\')'">
                   <figcaption class="p-2 bg(gradient-to-b) from-transparent to-black text(xs right white opacity-80) font-black absolute bottom-0 inset-x-0 lg:(p-8 text-2xl)">{{ item.title }}</figcaption>
                 </figure>
@@ -71,14 +71,20 @@
         <page-section>
           <page-heading sub="Geekery">Book</page-heading>
           <article class="w-full min-h-screen flex">
-            <a href="https://craigerskine.com/buy/1430216182" class="group flex-1 flex relative opacity-30 transition duration-300 transform scale-90 hover:(z-30 opacity-100 scale-100) focus:(z-30 opacity-100 scale-100)"><figure class="bg(center cover) flex-1 rounded-lg" style="background-image: url('assets/img/book.jpg');"></figure></a>
-            <a href="https://craigerskine.com/buy/1430216182" class="group flex-1 flex relative opacity-30 transition duration-300 transform scale-90 hover:(z-30 opacity-100 scale-100) focus:(z-30 opacity-100 scale-100)"><figure class="bg(center cover) flex-1 rounded-lg" style="background-image: url('assets/img/book-web-920.jpg');"></figure></a>
+            <a href="https://craigerskine.com/buy/1430216182" class="group flex-1 flex relative opacity-30 transition duration-100 transform scale-95 hover:(z-30 opacity-100 rotate-1) focus:(z-30 opacity-100 rotate-1)"><figure class="bg(center cover) flex-1 rounded-lg" style="background-image: url('assets/img/book.jpg');"></figure></a>
+            <a href="https://craigerskine.com/buy/1430216182" class="group flex-1 flex relative opacity-30 transition duration-100 transform scale-95 hover:(z-30 opacity-100 -rotate-1) focus:(z-30 opacity-100 -rotate-1)"><figure class="bg(center cover) flex-1 rounded-lg" style="background-image: url('assets/img/book-web-920.jpg');"></figure></a>
           </article>
         </page-section>
         <page-section bg="assets/img/bg-art.jpg">
           <page-heading sub="Sketches">Art</page-heading>
-          <article>
-            [sketches]
+          <article class="w-full">
+            <ul class="px-4 w-full flex">
+              <li class="p-4 w-1/5"><a href="#" class="block transform transition-all duration-100 hover:(scale-125) focus:(scale-125)"><img src="//placehold.it/300x400" class="mx-auto shadow-flat" /></a></li>
+              <li class="p-4 w-1/5"><a href="#" class="block transform transition-all duration-100 hover:(scale-125) focus:(scale-125)"><img src="//placehold.it/300x400" class="mx-auto shadow-flat" /></a></li>
+              <li class="p-4 w-1/5"><a href="#" class="block transform transition-all duration-100 hover:(scale-125) focus:(scale-125)"><img src="//placehold.it/300x400" class="mx-auto shadow-flat" /></a></li>
+              <li class="p-4 w-1/5"><a href="#" class="block transform transition-all duration-100 hover:(scale-125) focus:(scale-125)"><img src="//placehold.it/300x400" class="mx-auto shadow-flat" /></a></li>
+              <li class="p-4 w-1/5"><a href="#" class="block transform transition-all duration-100 hover:(scale-125) focus:(scale-125)"><img src="//placehold.it/300x400" class="mx-auto shadow-flat" /></a></li>
+            </ul>
           </article>
         </page-section>
         <page-section bg="assets/img/bg-games.jpg">
@@ -104,14 +110,17 @@
           <article>
             <ul class="text-[calc(5vw+5vh+2vmin)] inline-flex items-center space-x-12">
               <li v-for="(item, index) in soc">
-                <a :href="item.href" :class="'group text('+ item.color +' opacity-70) block relative transition duration-300 hover:(text-opacity-100 animate-blob) focus:(text-opacity-100 animate-blob)'">
+                <a :href="item.href" :class="'group text('+ item.color +' opacity-70) block relative transition duration-200 hover:(text-opacity-100 animate-blob) focus:(text-opacity-100 animate-blob)'">
                   <template v-if="item.title == 'Craig Erskine'">
-                    <i :class="'fak fa-fw fa-ce'"></i>
+                    <svg class="svg-inline--fa fa-fw fill-current" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                      <path d="m0 256c0 141.386752 114.613248 256 256 256 94.756352 0 177.484544-51.48288 221.7472-128-9.612032-16.616448-21.04064-32.057344-34.0096-46.0416-31.61216 72.309504-103.771392 122.8416-187.7376 122.8416-113.109248 0-204.8-91.690752-204.8-204.8s91.690752-204.8 204.8-204.8c83.964928 0 156.124928 50.533632 187.7376 122.8416 12.96896-13.984256 24.397568-29.425152 34.0096-46.0416-44.26368-76.516864-126.991104-128-221.7472-128-141.386752 0-256 114.613248-256 256z" />
+                      <path d="m109.4272 209.92c41.518848 29.042944 92.058368 46.08 146.5728 46.08 54.513408 0 105.05472-17.0368 146.5728-46.08-5.272064-16.783616-13.349376-32.32768-23.68-46.08-34.230272 25.718528-76.780032 40.96-122.8928 40.96s-88.661504-15.242496-122.8928-40.96c-10.329344 13.751808-18.408704 29.296896-23.68 46.08z" opacity=".33" />  
+                    </svg>
                   </template>
                   <template v-else>
                     <i :class="'fab fa-fw fa-'+ item.ico"></i>
                   </template>
-                  <b class="mt-2 px-3 py-2 bg(black opacity-75) text(sm gray-200) truncate pointer-events-none absolute -top-10 left-1/2 rounded opacity-0 shadow-2xl transform -translate-x-1/2 transition-all duration-300 group-hover:(mt-4 opacity-100) group-focus:(mt-4 opacity-100)">{{ item.title }} <i class="block not-italic text-xs opacity-50">{{ item.sub }}</i></b>
+                  <b class="mt-2 px-3 py-2 bg(black opacity-75) text(sm gray-200) truncate pointer-events-none absolute -top-10 left-1/2 rounded opacity-0 shadow-2xl transform -translate-x-1/2 transition-all duration-100 group-hover:(mt-4 opacity-100) group-focus:(mt-4 opacity-100)">{{ item.title }} <i class="block not-italic text-xs opacity-50">{{ item.sub }}</i></b>
                 </a>
               </li>
             </ul>
@@ -210,7 +219,7 @@
                 title: 'Craig Erskine',
                 sub: 'My Website',
                 href: 'https://craigerskine.com/',
-                color: 'blue-400',
+                color: 'white',
               },
               {
                 title: 'Dribbble',
@@ -224,7 +233,7 @@
                 sub: 'Code Projects',
                 href: 'https://github.com/craigerskine/',
                 ico: 'github',
-                color: 'gray-200',
+                color: 'gray-500',
               },
             ],
           }
