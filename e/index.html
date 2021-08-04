@@ -78,12 +78,8 @@
         <page-section bg="assets/img/bg-art.jpg">
           <page-heading sub="Sketches">Art</page-heading>
           <article class="w-full">
-            <ul class="px-4 w-full flex">
-              <li class="p-4 w-1/5"><a href="#" class="block transform transition-all duration-100 hover:(scale-125) focus:(scale-125)"><img src="//placehold.it/300x400" class="mx-auto shadow-flat" /></a></li>
-              <li class="p-4 w-1/5"><a href="#" class="block transform transition-all duration-100 hover:(scale-125) focus:(scale-125)"><img src="//placehold.it/300x400" class="mx-auto shadow-flat" /></a></li>
-              <li class="p-4 w-1/5"><a href="#" class="block transform transition-all duration-100 hover:(scale-125) focus:(scale-125)"><img src="//placehold.it/300x400" class="mx-auto shadow-flat" /></a></li>
-              <li class="p-4 w-1/5"><a href="#" class="block transform transition-all duration-100 hover:(scale-125) focus:(scale-125)"><img src="//placehold.it/300x400" class="mx-auto shadow-flat" /></a></li>
-              <li class="p-4 w-1/5"><a href="#" class="block transform transition-all duration-100 hover:(scale-125) focus:(scale-125)"><img src="//placehold.it/300x400" class="mx-auto shadow-flat" /></a></li>
+            <ul class="px-4 w-full flex" v-for="(item, index) in art">
+              <li class="p-4 w-1/5"><a href="#" class="block transform transition-all duration-100 hover:(scale-125) focus:(scale-125)"><figure><img :src="'art-'+ slug(item.title) +'.jpg'" class="mx-auto shadow-flat" :alt="item.title" /><figcaption>{{ item.title }}</figcaption></figure></a></li>
             </ul>
           </article>
         </page-section>
@@ -213,6 +209,13 @@
                   { title: 'Farscape', href: 'https://imdb.com/title/tt0187636/', },
                 ],
               },
+            ],
+            art: [
+              { title: 'Comic Panel', },
+              { title: 'Earthworm Jim', },
+              { title: 'Evil Faces', },
+              { title: 'Lori Rocks', },
+              { title: 'Tree', },
             ],
             soc: [
               {
