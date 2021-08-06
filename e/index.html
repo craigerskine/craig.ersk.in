@@ -68,24 +68,22 @@
             </div>
           </article>
         </page-section>
-        <page-section id="book">
-          <page-heading sub="Geekery">Book</page-heading>
-          <article class="w-full min-h-screen flex">
-            <a href="https://craigerskine.com/buy/1430216182" class="group flex-1 flex relative opacity-30 transition duration-100 transform scale-95 hover:(z-30 opacity-100 rotate-1) focus:(z-30 opacity-100 rotate-1)"><figure class="bg(center cover) flex-1 rounded-lg" style="background-image: url('assets/img/book-cover.jpg');"></figure></a>
-            <a href="https://craigerskine.com/buy/1430216182" class="group flex-1 flex relative opacity-30 transition duration-100 transform scale-95 hover:(z-30 opacity-100 -rotate-1) focus:(z-30 opacity-100 -rotate-1)"><figure class="bg(center cover) flex-1 rounded-lg" style="background-image: url('assets/img/book-web-920.jpg');"></figure></a>
-          </article>
-        </page-section>
         <page-section id="art" bg="assets/img/bg-art.jpg">
           <page-heading sub="Sketches">Art</page-heading>
           <article class="px-4 w-full flex">
-
             <a href="#section-art" v-for="(item, index) in art" class="group p-4 w-1/5 flex items-center transition-all duration-300 hover:(w-full z-30) focus:(w-full z-30)">
               <figure :class="['w-full relative transform', ((index % 2 == 0) ? 'rotate-3' : '-rotate-1')]">
                 <img :src="'assets/img/art-'+ slug(item.title) +'.jpg'" :alt="item.title" :class="['mx-auto rounded shadow-flat']" />
                 <figcaption class="p-2 text-center opacity-0 group-hover:(opacity-100) group-focus:(opacity-100)">{{ item.title }}</figcaption>
               </figure>
             </a>
-
+          </article>
+        </page-section>
+        <page-section id="book">
+          <page-heading sub="Geekery">Book</page-heading>
+          <article class="w-full min-h-screen flex">
+            <a href="https://craigerskine.com/buy/1430216182" class="group flex-1 flex relative opacity-30 transition duration-100 transform scale-95 hover:(z-30 opacity-100 rotate-1) focus:(z-30 opacity-100 rotate-1)"><figure class="bg(center cover) flex-1 rounded-lg" style="background-image: url('assets/img/book-cover.jpg');"></figure></a>
+            <a href="https://craigerskine.com/buy/1430216182" class="group flex-1 flex relative opacity-30 transition duration-100 transform scale-95 hover:(z-30 opacity-100 -rotate-1) focus:(z-30 opacity-100 -rotate-1)"><figure class="bg(center cover) flex-1 rounded-lg" style="background-image: url('assets/img/book-web-920.jpg');"></figure></a>
           </article>
         </page-section>
         <page-section id="hobbies" bg="assets/img/bg-hobbies.jpg">
