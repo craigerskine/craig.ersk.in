@@ -93,15 +93,15 @@
           <article>
             <ul class="px-6 flex items-center">
               <li v-for="(item, index) in hobbies" class="px-6 w-1/3 hover:w-2/3 transition-all duration-200">
-                <a :href="((item.href == '') ? '#section-hobbies' : item.href)" class="group block">
-                  <figure class="block relative">
-                    <figure v-for="(figure, index) in item.figures" :class="['w-5/6 relative block transtion duration-200', ((index === 1) ? 'absolute right-10 -top-4 z-10 opacity-25 hover:(z-30 opacity-100)' : 'z-20')]">
+                <figure class="block relative">
+                  <a v-for="(figure, index) in item.figures" :href="((figure.href == '') ? '#section-hobbies' : figure.href)" :class="['group w-5/6 relative block transtion duration-200', ((index === 1) ? 'absolute right-10 -top-4 z-10 opacity-25 hover:(z-30 opacity-100)' : 'z-20')]">
+                    <figure>
                       <img :src="'assets/img/hobby-'+ figure.img +'.jpg'" alt="figure.title" class="w-full rounded shadow-flat" />
-                      <figcaption class="m-1 py-1 px-4 bg(white opacity-75) text(gray-800 sm) font-bold absolute top-0 right-0 rounded">{{ figure.title }}</figcaption>
+                      <figcaption class="m-1 py-1 px-4 bg(white opacity-75) text(gray-800 sm) font-bold hidden absolute top-0 right-0 rounded md:(block group-hover:animate-bounce)">{{ figure.title }}</figcaption>
                     </figure>
-                    <figcaption class="p-2 text-sm font-bold uppercase opacity-50">{{ item.title }}</figcaption>
-                  </figure>
-                </a>
+                  </a>
+                  <figcaption class="p-2 text-sm font-bold uppercase opacity-50">{{ item.title }}</figcaption>
+                </figure>
               </li>
             </ul>
           </article>
@@ -112,7 +112,7 @@
             <a :href="item.href" v-for="(item, index) in guitars" class="group relative transform rotate-12">
               <figure>
                 <img :src="'assets/img/guitar-'+ item.type +'.jpg'" :alt="item.title" class="rounded shadow-flat transition duration-200 group-hover:(bg-yellow-500 ring([6px] yellow-500)) group-focus:(bg-yellow-500 ring([6px] yellow-500))" />
-                <figcaption class="p-2 text(gray-800 sm) font-bold absolute right-0 bottom-0">{{ item.title }}</figcaption>
+                <figcaption class="p-2 text(gray-800 sm) font-bold absolute right-0 bottom-0">{{ item.title }} <template v-if="item.pending"><small class="ml-2 text-red-500 animate-pulse">Pending</small></template></figcaption>
               </figure>
             </a>
           </article>
@@ -120,7 +120,7 @@
         <page-section id="end" bg="assets/img/craig-erskine-huh.png">
           <page-heading>End of Line</page-heading>
           <article class="w-full max-w-screen-md">
-            <ul class="w-full text-[calc(5vw+5vh+2vmin)] flex items-center justify-between">
+            <ul class="px-6 w-full text-[calc(5vw+5vh+2vmin)] flex items-center justify-between">
               <li v-for="(item, index) in soc">
                 <a :href="item.href" :class="'group text('+ item.color +' opacity-70) block relative transition duration-200 hover:(text-opacity-100 animate-blob) focus:(text-opacity-100 animate-blob)'">
                   <template v-if="item.title == 'Craig Erskine'">
@@ -137,7 +137,7 @@
               </li>
             </ul>
             <hr class="mt-24 opacity-20" />
-            <div class="pt-24 w-full flex items-center">
+            <div class="pt-24 px-6 w-full flex items-center">
               <section @click="selectedPerson = people[Math.floor(Math.random() * people.length)]"><i class="fas fa-sync-alt fa-fw fa-5x fa-spin text(yellow-500 opacity-50)"></i></section>
               <section class="px-10 flex-1">
                 <b class="text-yellow-500 uppercase">Up Next</b>
@@ -247,13 +247,13 @@
               { title: 'Tree', },
             ],
             hobbies: [
-              { title: 'Soldering', href: '', figures: [{title: 'Keyboards', img: 'kb'}, {title: 'Unhinged GBA SP', img: 'gba'}], },
-              { title: 'OpenEmu', href: 'https://openemu.org/', figures: [{title: 'Website', img: 'oe'}, {title: 'Controller Illustrations', img: 'gcn'}], },
-              { title: 'Gaming', href: 'https://pxl.media/', figures: [{title: 'Game Collection', img: 'pxl'}, {title: 'Case Overlays', img: 'case'}], },
+              { title: 'Soldering', figures: [{title: 'Keyboards', img: 'kb', href: 'https://thekey.company/collections/minivan'}, {title: 'Unhinged GBA SP', img: 'gba', href: 'https://boxypixel.com/'}], },
+              { title: 'OpenEmu', figures: [{title: 'Website', img: 'oe', href: 'https://openemu.org/'}, {title: 'Controller Illustrations', img: 'gcn', href: 'https://dribbble.com/craigerskine/projects/464116-OpenEmu'}], },
+              { title: 'Gaming', figures: [{title: 'Game Collection', img: 'pxl', href: 'https://pxl.media/'}, {title: 'Case Overlays', img: 'case', href: 'https://craig.ersk.in/media-cases/'}], },
             ],
             guitars: [
               { title: '*strandberg. - Boden Metal', type: 'boden-metal', href: 'https://strandbergguitars.com/product/boden-metal-6-black-pearl/', },
-              { title: 'Kiesel - Vader', type: 'vader', href: 'https://craig.ersk.in/prototypes/kiesel/order-sheet/', },
+              { title: 'Kiesel - Vader', type: 'vader', href: 'https://craig.ersk.in/prototypes/kiesel/order-sheet/', pending: true},
             ],
             soc: [
               {
