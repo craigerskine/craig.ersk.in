@@ -136,10 +136,10 @@
             </ul>
             <hr class="mt-24 opacity-20" />
             <div class="pt-24 px-6 w-full flex items-center">
-              <section @click="selectedPerson = people[Math.floor(Math.random() * people.length)]"><i class="fas fa-sync-alt fa-fw fa-5x fa-spin text(yellow-500 opacity-50)"></i></section>
+              <section @click="selectedPerson = people[Math.floor(Math.random() * people.length)]" class="cursor-pointer"><i class="fas fa-sync-alt fa-fw fa-5x fa-spin text(yellow-500 opacity-50)"></i></section>
               <section class="px-10 flex-1">
                 <b class="text-yellow-500 uppercase">Up Next</b>
-                <h1 class="first-line::text-white font-black leading-tight text-2xl md:text-[calc(2vw+2vh+.5vmin)]">
+                <h1 class="w-1 font-black leading-tight text-3xl first-line:(:text-white :text-[calc(2vw+2vh+.5vmin)])">
                   {{ selectedPerson.name }}
                 </h1>
               </section>
@@ -296,7 +296,7 @@
               { name: 'Subbulakshmi Sankaran' },
               { name: 'Swarna Bhuvanapalli' },
             ],
-            selectedPerson: { name: 'No whammy...' },
+            selectedPerson: { name: '🤨 ···' },
           }
         },
         methods: {
