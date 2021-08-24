@@ -134,12 +134,17 @@
                 </a>
               </li>
             </ul>
-            <hr class="mt-24 opacity-20" />
-            <div class="pt-24 px-6 w-full flex items-center">
-              <section @click="selectedPerson = people[Math.floor(Math.random() * people.length)]" class="cursor-pointer"><i class="fas fa-sync-alt fa-fw fa-5x fa-spin text(yellow-500 opacity-50)"></i></section>
-              <section class="px-10 flex-1">
-                <b class="text-yellow-500 uppercase">Up Next</b>
-                <h1 class="w-1 font-black leading-tight text-3xl first-line:(:text-white :text-[calc(2vw+2vh+.5vmin)])">
+            <div class="pt-24 px-6 w-full">
+              <p class="pb-8 text(yellow-500 center) font-black uppercase">Up Next</p>
+              <div class="flex items-center">
+                <hr class="flex-1 opacity-20" />
+                <div @click="selectedPerson = people[Math.floor(Math.random() * people.length)]" class="mx-3 w-32 h-32 bg(cover) flex cursor-pointer" style="background-image: url('assets/img/btn.svg');">
+                  <i class="fal fa-sync-alt fa-fw fa-spin mt-[30px] mx-auto text(white opacity-20 6xl)"></i>
+                </div>
+                <hr class="flex-1 opacity-20" />
+              </div>
+              <section class="text-center flex items-center justify-center">
+                <h1 class="font-black leading-tight text-3xl first-line:(:text-white :text-[calc(2vw+2vh+.5vmin)])">
                   {{ selectedPerson.name }}
                 </h1>
               </section>
@@ -296,7 +301,7 @@
               { name: 'Subbulakshmi Sankaran' },
               { name: 'Swarna Bhuvanapalli' },
             ],
-            selectedPerson: { name: '🤨 ···' },
+            selectedPerson: { name: '' },
           }
         },
         methods: {
