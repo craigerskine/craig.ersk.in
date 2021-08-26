@@ -36,6 +36,26 @@
             </section>
           </a>
         </page-section>
+        <page-section id="family" bg="assets/img/bg-camera.jpg">
+          <page-heading sub="Humans & Non-Humans">Family</page-heading>
+          <article class="p-4 space-y-10">
+            <template v-for="(item, index) in family">
+              <ul class="p-4 -space-x-3 flex justify-center">
+                <li v-for="(item, index) in item.list" :class="['max-w-[300px] w-1/5 relative shadow-flat transition-all duration-100 transform hover:(scale-125 rotate-0 z-10) lg:(w-full)', ((index % 2 == 0) ? 'rotate-3' : '-rotate-1')]">
+                  <figure class="p-2 bg-white rounded">
+                    <img :src="'assets/img/bio-'+ slug(item.title) +'.jpg'" :alt="item.title" class="rounded" />
+                    <figcaption class="pt-2 pb-1 px-2 space-x-3 font-bold text(base gray-700) hidden flex-wrap items-center lg:(text-lg flex)">
+                      <template v-if="item.relation"><i :class="['text-2xl', ((item.relation == 'Wife') ? 'fas fa-rings-wedding text-pink-500' : ''), ((item.relation == 'Daughter') ? 'fas fa-graduation-cap text-blue-500' : '')]"></i></template>
+                      <b class="flex-1">{{ item.title }}</b>
+                      <template v-if="item.passed"><i class="fad fa-angel text-gray-400" title="Passed"></i></template>
+                      <small v-if="item.relation" class="font-normal uppercase text(xs gray-400)">{{ item.relation }}</small>
+                    </figcaption>
+                  </figure>
+                </li>
+              </ul>
+            </template>
+          </article>
+        </page-section>
         <page-section id="location" bg="assets/img/bg-by.jpg">
           <page-heading sub="Wisconsin">Raised in</page-heading>
           <article class="p-4 flex items-center justify-center relative">
@@ -69,27 +89,7 @@
             </transition>
           </article>
         </page-section>
-        <page-section id="family" bg="assets/img/bg-camera.jpg">
-          <page-heading sub="Humans & Non-Humans">Family</page-heading>
-          <article class="p-4 space-y-10">
-            <template v-for="(item, index) in family">
-              <ul class="p-4 -space-x-3 flex justify-center">
-                <li v-for="(item, index) in item.list" :class="['max-w-[300px] w-1/5 relative shadow-flat transition-all duration-100 transform hover:(scale-125 rotate-0 z-10) lg:(w-full)', ((index % 2 == 0) ? 'rotate-3' : '-rotate-1')]">
-                  <figure class="p-2 bg-white rounded">
-                    <img :src="'assets/img/bio-'+ slug(item.title) +'.jpg'" :alt="item.title" class="rounded" />
-                    <figcaption class="pt-2 pb-1 px-2 space-x-3 font-bold text(base gray-700) hidden flex-wrap items-center lg:(text-lg flex)">
-                      <template v-if="item.relation"><i :class="['text-2xl', ((item.relation == 'Wife') ? 'fas fa-rings-wedding text-pink-500' : ''), ((item.relation == 'Daughter') ? 'fas fa-graduation-cap text-blue-500' : '')]"></i></template>
-                      <b class="flex-1">{{ item.title }}</b>
-                      <template v-if="item.passed"><i class="fad fa-angel text-gray-400" title="Passed"></i></template>
-                      <small v-if="item.relation" class="font-normal uppercase text(xs gray-400)">{{ item.relation }}</small>
-                    </figcaption>
-                  </figure>
-                </li>
-              </ul>
-            </template>
-          </article>
-        </page-section>
-        <page-section id="media">
+        <!-- <page-section id="media">
           <page-heading sub="Music & TV">Media</page-heading>
           <article class="w-full h-screen flex flex-col">
             <div v-for="(type, index) in media" class="w-full h-full flex-1 flex">
@@ -100,7 +100,7 @@
               </a>
             </div>
           </article>
-        </page-section>
+        </page-section> -->
         <page-section id="art" bg="assets/img/bg-art.jpg">
           <page-heading sub="Sketches">Art</page-heading>
           <article class="px-4 w-full flex">
@@ -289,7 +289,7 @@
             ],
             hobbies: [
               { title: 'Soldering', figures: [{title: 'Keyboards', img: 'kb', href: 'https://thekey.company/collections/minivan'}, {title: 'Unhinged GBA SP', img: 'gba', href: 'https://boxypixel.com/'}], },
-              { title: 'Open Source', figures: [{title: 'Website', img: 'oe', href: 'https://openemu.org/'}, {title: 'Controller Illustrations', img: 'gcn', href: 'https://dribbble.com/craigerskine/projects/464116-OpenEmu'}], },
+              { title: 'Open Source', figures: [{title: 'Website', img: 'oe', href: 'https://openemu.org/'}, {title: 'Controller Illustrations', img: 'oe-prefs', href: 'https://dribbble.com/craigerskine/projects/464116-OpenEmu'}], },
               { title: 'Gaming / Audio', figures: [{title: 'Game Collection', img: 'pxl', href: 'https://pxl.media/'}, {title: 'Theatre Signs', img: 'signs', href: 'https://figma.com/file/qm2FxCwVQAdLGycvPO4zSn/theater-signs?node-id=0%3A1'}], },
             ],
             guitars: [
@@ -332,6 +332,7 @@
               { name: 'Kristin Search' },
               { name: 'Liz Hamilton' },
               { name: 'Luke Trafton' },
+              { name: 'Nancy Dietz' },
               { name: 'Natalie Eichler' },
               { name: 'Saif Afzal' },
               { name: 'Somnath Rout' },
