@@ -36,6 +36,39 @@
             </section>
           </a>
         </page-section>
+        <page-section id="location" bg="assets/img/bg-by.jpg">
+          <page-heading sub="Wisconsin">Raised in</page-heading>
+          <article class="p-4 flex items-center justify-center relative">
+            <div class="map w-full">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 598 644" role="img" class="w-[800px] max-w-full text(red-500 opacity-75)">
+                <g>
+                  <polygon id="map-wi" class="text-gray-700" fill="currentColor" points="530.143693 634.506137 532.521002 607.11558 523.482419 577.142502 521.397033 536.961334 514.735979 520.825923 522.146061 501.163562 528.487603 482.515468 538.915476 466.219063 535.842413 443.894245 532.779324 420.564379 536.62115 409.167767 550.160393 394.059886 552.161311 376.234755 547.351597 367.555365 552.440094 350.960312 556.739934 330.088092 576.731319 294.241147 598.125299 251.064354 600 236.441923 598.224823 229.995423 592.75923 232.899474 562.963886 272.430762 543.571952 297.761087 530.210839 308.684793 524.135821 323.110513 514.318501 327.863913 506.199525 340.108179 496.77156 337.500513 496.328062 325.881381 505.666989 310.576788 521.085448 280.76113 533.290755 270.868553 541.314017 256.351444 530.943362 249.929303 522.412638 240.564609 515.444209 173.086573 491.827339 164.393375 483.611484 149.075819 402.035546 126.953648 385.935273 118.629364 332.668545 100.993882 279.054402 90.7430383 253.544188 54.1593887 249.664203 62.1950003 242.310577 60.7861931 238.458804 53.1835066 220.69182 46.9763632 213.184526 47.656289 201.15622 53.3860269 195.028187 48.8102114 199.936296 36.4420064 213.698995 17.1095132 221.539216 10.1353428 209.291996 0 195.252826 4.55557007 175.484925 16.1735573 125.532379 34.6752047 106.252201 37.8888778 87.27524 33.7370123 81.1389411 27.6845109 66.2753696 45.3766081 63.8664289 63.1591566 60.9569894 118.164454 52.8465838 128.205478 17.0112941 151.697791 0 189.582244 2.91426749 191.231222 18.7030561 205.44436 22.1011161 226.523747 9.00503477 246.725262 7.66768574 272.008922 8.38125229 315.263925 26.8688441 335.607808 49.415251 336.778558 60.2664343 358.202168 82.6548422 362.360016 106.184359 400.873343 151.283217 430.044517 163.842868 448.561538 167.294738 497.200511 170.654427 519.005337 185.113091 530.196893 186.105683 539.191555 171.42433 560.787008 171.830252 581.689631 186.988173 607.829828 203.133771 616.113677 222.441646 620.13296 229.696723 636.876883 289.842009 640 465.228562 638.687784"></polygon>
+                  <g fill="currentColor">
+                    <circle id="map-dot-gb" opacity="0.75" cx="499" cy="341" r="25" class="cursor-pointer animate-pulse" @click="showMapGB = true"></circle>
+                    <circle id="map-dot-dc" opacity="0.75" cx="566" cy="288" r="10" class="cursor-pointer animate-pulse" @click="showMapDC = true"></circle>
+                    <circle id="map-dot-up" opacity="0.75" cx="490" cy="240" r="10" class="cursor-pointer animate-pulse" @click="showMapUP = true"></circle>
+                  </g>
+                </g>
+              </svg>
+            </div>
+            <transition>
+              <div v-if="showMapGB" class="modal flex items-center justify-center space-x-8 absolute inset-0 transition-all duration-200">
+                <figure class="p-4 bg-white relative rounded shadow-2xl transform rotate-1"><img src="assets/img/bio-me-6th.jpg" /><figcaption class="pt-4">6th Grade</figcaption></figure>
+                <figure class="p-4 bg-white relative rounded shadow-2xl transform -rotate-2"><img src="assets/img/bio-me-soccer.jpg" /><figcaption class="pt-4">4th Grade <a href="#" class="w-8 h-8 bg-black text-white ring(2 white) flex items-center justify-center absolute -top-4 -right-4 cursor-pointer rounded-full" @click.prevent="showMapGB = false"><i class="fas fa-fw fa-times fa-lg"></i></a></figcaption></figure>
+              </div>
+            </transition>
+            <transition>
+              <div v-if="showMapDC" class="modal flex items-center justify-center space-x-8 absolute inset-0 transition-all duration-200">
+                <figure class="p-4 bg-white relative rounded shadow-2xl transform rotate-1"><img src="assets/img/bio-me-erskine.jpg" /><figcaption class="pt-4">Erskine Rest Area - Jacksonport, WI <a href="#" class="w-8 h-8 bg-black text-white ring(2 white) flex items-center justify-center absolute -top-4 -right-4 cursor-pointer rounded-full" @click.prevent="showMapDC = false"><i class="fas fa-fw fa-times fa-lg"></i></a></figcaption></figure>
+              </div>
+            </transition>
+            <transition>
+              <div v-if="showMapUP" class="modal flex items-center justify-center space-x-8 absolute inset-0 transition-all duration-200">
+                <figure class="p-4 bg-white relative rounded shadow-2xl transform -rotate-2"><img src="assets/img/bio-camping.jpg" /><figcaption class="pt-4">Roughin' it <a href="#" class="w-8 h-8 bg-black text-white ring(2 white) flex items-center justify-center absolute -top-4 -right-4 cursor-pointer rounded-full" @click.prevent="showMapUP = false"><i class="fas fa-fw fa-times fa-lg"></i></a></figcaption></figure>
+              </div>
+            </transition>
+          </article>
+        </page-section>
         <page-section id="family" bg="assets/img/bg-camera.jpg">
           <page-heading sub="Humans & Non-Humans">Family</page-heading>
           <article class="p-4 space-y-10">
@@ -190,6 +223,9 @@
         el: '.page',
         data() {
           return {
+            showMapGB: false,
+            showMapDC: false,
+            showMapUP: false,
             intro_fname: 'Craig',
             intro_lname: 'Erskine',
             interests: [
@@ -352,6 +388,8 @@
       })
       twind.tw(() => ({
         '@global': {
+          '.v-leave-active': { '@apply': 'hidden', },
+          '.v-enter-active': { '@apply': 'opacity-[.0001] scale-75', },
           '.bg-grid': { 'background-image': 'url("data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 4 4\' width=\'4\' height=\'4\'><rect x=\'0\' y=\'0\' width=\'2\' height=\'2\' fill=\'rgba(1,0,32,.33)\'></rect></svg>")', },
           '.scene': { 'transform': 'translateY(var(--translateY))', 'will-change': 'transform', },
           //':root [v-cloak]': { '@apply': 'hidden', },
