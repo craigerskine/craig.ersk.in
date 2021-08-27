@@ -140,7 +140,7 @@
         <page-section id="guitar" bg="assets/img/bg-guitar.jpg">
           <page-heading sub="Gear">Guitar</page-heading>
           <article class="flex space-x-16">
-            <a :href="item.href" v-for="(item, index) in guitars" class="group relative transform rotate-12">
+            <a :href="item.href" v-for="(item, index) in guitars" class="group relative relative z-10 opacity-75 transform rotate-12 transition-all duration-250 hover:(opacity-100 rotate-0 z-20) focus:(opacity-100 rotate-0 z-20)">
               <figure>
                 <img :src="'assets/img/guitar-'+ item.type +'.jpg'" :alt="item.title" class="rounded shadow-flat transition duration-200 group-hover:(bg-yellow-500 ring([6px] yellow-500)) group-focus:(bg-yellow-500 ring([6px] yellow-500))" />
                 <figcaption class="p-2 text(gray-800 sm) font-bold absolute right-0 bottom-0">{{ item.title }} <template v-if="item.pending"><small class="ml-2 text-red-500 animate-pulse">Pending</small></template></figcaption>
