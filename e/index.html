@@ -58,8 +58,8 @@
         </page-section>
         <page-section id="location" bg="assets/img/bg-by.jpg">
           <page-heading sub="Wisconsin">Raised in</page-heading>
-          <article class="p-4 flex items-center justify-center relative">
-            <div class="map w-full">
+          <article class="container mx-auto p-4 flex items-center justify-center relative">
+            <div class="map">
               <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 600 640" role="img" class="w-[800px] max-w-full fill-current transition-all duration-300 transform hover:(scale-110)">
                 <defs>
                   <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="grad-light">
@@ -82,9 +82,11 @@
               </svg>
             </div>
             <transition>
-              <div v-if="showMapGB" class="modal px-6 flex items-center justify-center space-x-8 absolute inset-0 transition-all duration-200">
-                <page-figure img="assets/img/bio-me-6th.jpg" css="-rotate-2">6th Grade</page-figure>
-                <page-figure img="assets/img/bio-me-soccer.jpg" css="rotate-1">4th Grade <a href="#" class="w-8 h-8 bg-black text-white ring(2 white) flex items-center justify-center absolute -top-4 -right-4 cursor-pointer rounded-full" @click.prevent="showMapGB = false"><i class="fas fa-fw fa-times fa-lg"></i></a></page-figure>
+              <div v-if="showMapGB" class="modal w-full px-6 flex items-center justify-center -space-x-4 absolute inset-0 transition-all duration-200">
+                <page-figure img="assets/img/bio-me-6th.jpg" css="-rotate-3">6th Grade</page-figure>
+                <page-figure img="assets/img/bio-me-soccer.jpg" css="rotate-1">4th Grade</page-figure>
+                <page-figure img="assets/img/bio-snow-bank.jpg" css="rotate-3">Snow Banks</page-figure>
+                <page-figure img="assets/img/bio-snow.jpg" css="-rotate-2">Snow Storm <a href="#" class="w-8 h-8 bg-black text-white ring(2 white) flex items-center justify-center absolute -top-4 -right-4 cursor-pointer rounded-full" @click.prevent="showMapGB = false"><i class="fas fa-fw fa-times fa-lg"></i></a></page-figure>
               </div>
             </transition>
             <transition>
@@ -159,9 +161,9 @@
           </article>
         </page-section>
         <page-section id="end" bg="assets/img/craig-erskine-huh.png">
-          <page-heading>End of Line</page-heading>
-          <article class="w-full max-w-screen-md">
-            <ul class="px-6 w-full text-[calc(5vw+5vh+2vmin)] flex items-center justify-between">
+          <page-heading sub="End of Line">Fin</page-heading>
+          <article class="w-full min-h-screen max-w-screen-md flex flex-col">
+            <ul class="my-auto px-6 w-full text-[calc(3vw+3vh+2vmin)] flex items-center justify-center space-x-4">
               <li v-for="(item, index) in soc">
                 <a :href="item.href" :class="'group text('+ item.color +' opacity-70) block relative transition duration-200 hover:(text-opacity-100 animate-blob) focus:(text-opacity-100 animate-blob)'">
                   <template v-if="item.title == 'Craig Erskine'">
@@ -177,17 +179,17 @@
                 </a>
               </li>
             </ul>
-            <div class="pt-24 px-6 w-full">
-              <p class="pb-8 text(yellow-500 center) font-black uppercase">Up Next</p>
+            <div class="mt-auto pt-8 px-6 w-full">
+              <p class="pb-8 text(yellow-500 center) font-black uppercase">Who's Up Next</p>
               <div class="flex items-center">
                 <hr class="flex-1 opacity-20" />
-                <div @click="selectedPerson = people[Math.floor(Math.random() * people.length)]" class="mx-3 w-32 h-32 bg(cover) flex cursor-pointer" style="background-image: url('assets/img/btn.svg');">
+                <a href="#" @click.prevent="selectedPerson = people[Math.floor(Math.random() * people.length)]" class="mx-3 w-32 h-32 bg(cover) flex cursor-pointer">
                   <i class="fal fa-sync-alt fa-fw fa-spin mt-[30px] mx-auto text(white opacity-20 6xl)"></i>
-                </div>
+                </a>
                 <hr class="flex-1 opacity-20" />
               </div>
               <section class="text-center flex items-center justify-center">
-                <h1 class="font-black leading-tight text-3xl first-line:(:text-white :text-[calc(2vw+2vh+.5vmin)])">
+                <h1 class="p-4 font-black leading-tight text-3xl first-line:(:text-white :text-[calc(2vw+2vh+.5vmin)])">
                   {{ selectedPerson.name }}
                 </h1>
               </section>
