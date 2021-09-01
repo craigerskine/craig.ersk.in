@@ -41,7 +41,7 @@
           <article class="p-4 space-y-10">
             <template v-for="(item, index) in family">
               <ul class="p-4 -space-x-3 flex justify-center">
-                <li v-for="(item, index) in item.list" :class="['max-w-[300px] w-1/5 relative shadow-flat transition-all duration-100 transform hover:(scale-125 rotate-0 z-10) lg:(w-full)', ((index % 2 == 0) ? 'rotate-3' : '-rotate-1')]">
+                <li v-for="(item, index) in item.list" :class="['max-w-[300px] w-1/5 relative shadow-flat transition-all duration-100 transform hover:(scale-150 rotate-0 z-20) lg:(w-full)', ((index % 2 == 0) ? 'rotate-3' : '-rotate-1')]">
                   <figure class="p-2 bg-white rounded">
                     <img :src="'assets/img/bio-'+ slug(item.title) +'.jpg'" :alt="item.title" class="rounded" />
                     <figcaption class="pt-2 pb-1 px-2 space-x-3 font-bold text(base gray-700) hidden flex-wrap items-center lg:(text-lg flex)">
@@ -60,7 +60,7 @@
           <page-heading sub="Wisconsin">Raised in</page-heading>
           <article class="container mx-auto p-4 flex items-center justify-center relative">
             <div class="map">
-              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 600 640" role="img" class="w-[800px] max-w-full fill-current transition-all duration-300 transform hover:(scale-110)">
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 600 640" role="img" class="w-auto max-w-full h-[80vh] fill-current transition-all duration-300 transform hover:(scale-110)">
                 <defs>
                   <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="grad-light">
                     <stop stop-color="#FFFFFF" stop-opacity="0.5" offset="0%"></stop>
@@ -73,10 +73,13 @@
                     <use class="text-green-700" xlink:href="#path-wi"></use>
                     <use fill-opacity="0.5" fill="url(#grad-light)" xlink:href="#path-wi"></use>
                   </g>
-                  <g id="map-wi-dots" transform="translate(474.000000, 230.000000)" class="text(orange-400 opacity-80)">
+                  <g id="map-wi-dots" transform="translate(474, 230)" class="text(orange-400 opacity-80)">
                     <circle id="map-dot-gb" class="cursor-pointer animate-pulse" @click="showMapGB = true" opacity="0.75" cx="25" cy="111" r="25"></circle>
+                    <text x="-5" y="148" class="text(xs white opacity-75) font-sans">Green Bay</text>
                     <circle id="map-dot-dc" class="cursor-pointer animate-pulse" @click="showMapDC = true" opacity="0.75" cx="92" cy="58" r="10"></circle>
+                    <text x="55" y="80" class="text(xs white opacity-75) font-sans">Door County</text>
                     <circle id="map-dot-up" class="cursor-pointer animate-pulse" @click="showMapUP = true" opacity="0.75" cx="16" cy="10" r="10"></circle>
+                    <text x="-3" y="32" class="text(xs white opacity-75) font-sans">Crivitz</text>
                   </g>
                 </g>
               </svg>
@@ -116,10 +119,10 @@
         <page-section id="art" bg="assets/img/bg-art.jpg">
           <page-heading sub="Sketches">Art</page-heading>
           <article class="px-4 w-full flex">
-            <a href="#section-art" v-for="(item, index) in art" class="group p-4 w-1/5 flex items-center transition-all duration-300 hover:(w-full z-30) focus:(w-full z-30)">
+            <a href="#section-art" @click.prevent v-for="(item, index) in art" class="group p-4 w-1/5 flex items-center transition-all duration-300 hover:(w-full z-30)">
               <figure :class="['w-full relative transform', ((index % 2 == 0) ? 'rotate-3' : '-rotate-1')]">
                 <img :src="'assets/img/art-'+ slug(item.title) +'.jpg'" :alt="item.title" :class="['mx-auto rounded shadow-flat']" />
-                <figcaption class="p-2 text-center opacity-0 group-hover:(opacity-100) group-focus:(opacity-100)">{{ item.title }}</figcaption>
+                <figcaption class="p-2 text-center font-bold opacity-0 transition duration-300 group-hover:(opacity-100) group-focus:(opacity-100)">{{ item.title }}</figcaption>
               </figure>
             </a>
           </article>
@@ -127,7 +130,7 @@
         <page-section id="book">
           <page-heading sub="Geekery">Book</page-heading>
           <article class="w-full min-h-screen flex">
-            <a href="https://craigerskine.com/buy/1430216182" class="group flex-1 flex relative opacity-30 transition duration-100 transform scale-95 hover:(z-30 opacity-100 rotate-1) focus:(z-30 opacity-100 rotate-1)"><figure class="bg(center cover) flex-1 rounded-lg" style="background-image: url('assets/img/book-cover.jpg');"></figure></a>
+            <a href="https://craigerskine.com/buy/1430216182" class="group flex-1 flex relative opacity-30 transition duration-100 transform scale-95 hover:(z-30 opacity-100 rotate-1) focus:(z-30 opacity-100 rotate-1)"><figure class="bg(right cover) flex-1 rounded-lg" style="background-image: url('assets/img/book-cover.jpg');"></figure></a>
             <a href="https://craigerskine.com/buy/1430216182" class="group flex-1 flex relative opacity-30 transition duration-100 transform scale-95 hover:(z-30 opacity-100 -rotate-1) focus:(z-30 opacity-100 -rotate-1)"><figure class="bg(center cover) flex-1 rounded-lg" style="background-image: url('assets/img/book-web-920.jpg');"></figure></a>
           </article>
         </page-section>
@@ -189,11 +192,12 @@
                 <hr class="flex-1 opacity-20" />
               </div>
               <section class="text-center flex items-center justify-center">
-                <h1 class="p-4 font-black leading-tight text-3xl first-line:(:text-white :text-[calc(2vw+2vh+.5vmin)])">
+                <h1 class="p-4 pb-12 font-black leading-tight text-3xl first-line:(:text-white :text-[calc(2vw+2vh+.5vmin)])">
                   {{ selectedPerson.name }}
                 </h1>
               </section>
             </div>
+            <figure class="absolute -bottom-4 -right-4 opacity-30 transform -rotate-45 transition duration-300 hover:(opacity-100)"><img src="assets/img/chicken.png" alt="Chicken" /></figure>
           </article>
         </page-section>
       </main>
@@ -207,7 +211,7 @@
       Vue.component('page-section', {
         template: `
           <section :id="'section-'+ id" class="h-[250vh] relative">
-            <section class="min-h-screen flex flex-col items-center justify-center sticky top-0 overflow-hidden">
+            <section class="min-h-screen flex flex-col items-center justify-center sticky top-0 overflow-hidden relative">
               <slot></slot>
               <div class="scene bg(fixed cover center) absolute inset-0 z-[-1] opacity-10" :style="((bg) ? 'background-image: url('+ bg +')' : '')"></div>
             </section>
@@ -232,7 +236,7 @@
 
       Vue.component('page-figure', {
         template: `
-          <figure :class="'p-4 bg-white relative rounded shadow-2xl transform '+ css">
+          <figure :class="'p-4 bg-white relative rounded shadow-2xl transform transition-all duration-300 hover:(scale-125 z-20) '+ css">
             <img :src="img" />
             <figcaption class="pt-4 text-gray-700 font-bold lg:text-lg">
               <slot></slot>
@@ -310,7 +314,7 @@
             art: [
               { title: 'Comic Panel', },
               { title: 'Earthworm Jim', },
-              { title: 'Evil Faces', },
+              { title: 'Negative Space', },
               { title: 'Lori Rocks', },
               { title: 'Tree', },
             ],
@@ -332,7 +336,7 @@
               },
               {
                 title: 'Dribbble',
-                sub: 'Design Snippets',
+                sub: 'Design Shots',
                 href: 'https://dribbble.com/craigerskine/',
                 ico: 'dribbble',
                 color: 'pink-500',
