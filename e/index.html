@@ -45,7 +45,7 @@
                   <figure class="p-2 bg-white rounded">
                     <img :src="'assets/img/bio-'+ slug(item.title) +'.jpg'" :alt="item.title" class="rounded" />
                     <figcaption class="pt-2 pb-1 px-2 space-x-3 font-bold text(base gray-700) hidden flex-wrap items-center lg:(text-lg flex)">
-                      <template v-if="item.relation"><i :class="['text-2xl', ((item.relation == 'Wife') ? 'fas fa-rings-wedding text-pink-500' : ''), ((item.relation == 'Daughter') ? 'fas fa-graduation-cap text-blue-500' : '')]"></i></template>
+                      <template v-if="item.relation && item.relation !== 'Sister' && item.relation !== 'Brother'"><i :class="['text-2xl', ((item.relation == 'Wife') ? 'fas fa-rings-wedding text-pink-500' : ''), ((item.relation == 'Daughter') ? 'fas fa-graduation-cap text-blue-500' : '')]"></i></template>
                       <b class="flex-1">{{ item.title }}</b>
                       <template v-if="item.passed"><i class="fad fa-angel text-gray-400" title="Passed"></i></template>
                       <small v-if="item.relation" class="font-normal uppercase text(xs gray-400)">{{ item.relation }}</small>
