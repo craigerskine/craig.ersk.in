@@ -35,6 +35,17 @@
               </p>
             </section>
           </a>
+          <hr class="my-16 mx-auto w-full max-w-md h-px opacity-20" />
+          <nav>
+            <ul class="inline-flex space-x-5">
+              <li v-for="(nav, index) in ['family','location','art','book','hobbies','guitar','end',]">
+                <a :href="'#section-'+ nav" class="group text-xs font-bold capitalize flex flex-col items-center transition hover:(text-white) focus:(text-white) md:(text-base)">
+                  <span><i class="mr-1 text-sm hidden opacity-50 md:(inline-block)">#</i> {{ nav }}</span>
+                  <b class="mt-1 h-px w-0 bg-current w-full transition-all group-hover:(w-full) group-focus:(w-full)"></b>
+                </a>
+              </li>
+            </ul>
+          </nav>
         </page-section>
         <page-section id="family" bg="assets/img/bg-camera.jpg">
           <page-heading sub="Humans & Non-Humans">Family</page-heading>
