@@ -18,8 +18,8 @@
     <div id="app" class="min-h-screen" v-cloak>
       <main>
         <ul class="space-x-3 flex fixed top-3 right-3 z-50">
-          <li><button type="button" class="p-2 ring(1 inset current) outline-none leading-none block rounded transition duration-100 hover:(text-white) focus:(text-white outline-none)" @click="window.scrollBy(0, -(document.documentElement.clientHeight * 2.5))"><i class="fal fa-arrow-up"></i></button></li>
-          <li><button type="button" class="p-2 ring(1 inset current) outline-none leading-none block rounded transition duration-100 hover:(text-white) focus:(text-white outline-none)" @click="window.scrollBy(0, (document.documentElement.clientHeight * 2.5))"><i class="fal fa-arrow-down"></i></button></li>
+          <li><button type="button" class="p-2 ring(1 inset current) outline-none leading-none block rounded transition duration-100 hover:(text-white) focus:(text-white outline-none)" @click="window.scrollBy(0, -(document.documentElement.clientHeight * 2.5))"><iconify-icon icon="mdi:arrow-up" width="1em" height="1em" inline="false"></iconify-icon></button></li>
+          <li><button type="button" class="p-2 ring(1 inset current) outline-none leading-none block rounded transition duration-100 hover:(text-white) focus:(text-white outline-none)" @click="window.scrollBy(0, (document.documentElement.clientHeight * 2.5))"><iconify-icon icon="mdi:arrow-down" width="1em" height="1em" inline="false"></iconify-icon></button></li>
         </ul>
         <page-section id="start" bg="assets/img/bio-craig.png">
           <a href="https://craigerskine.com/" class="p-4 opacity-50 transition duration-100 hover:(opacity-100) focus:(opacity-100 outline-none) lg:(space-x-12 flex items-center)">
@@ -56,9 +56,12 @@
                   <figure class="p-2 bg-white rounded">
                     <img :src="'assets/img/bio-'+ slug(item.title) +'.jpg'" :alt="item.title" class="rounded" />
                     <figcaption class="pt-2 pb-1 px-2 space-x-3 font-bold text(base gray-700) hidden flex-wrap items-center lg:(text-lg flex)">
-                      <template v-if="item.relation && item.relation !== 'Sister' && item.relation !== 'Brother'"><i :class="['text-2xl', ((item.relation == 'Wife') ? 'fas fa-rings-wedding text-pink-500' : ''), ((item.relation == 'Daughter') ? 'fas fa-graduation-cap text-blue-500' : '')]"></i></template>
+                      <template v-if="item.relation && item.relation !== 'Sister' && item.relation !== 'Brother'">
+                        <iconify-icon v-if="item.relation == 'Wife'" icon="mdi:ring" inline="false" class="text-2xl text-pink-500"></iconify-icon>
+                        <iconify-icon v-if="item.relation == 'Daughter'" icon="mdi:school" inline="false" class="text-2xl text-blue-500"></iconify-icon>
+                      </template>
                       <b class="flex-1">{{ item.title }}</b>
-                      <template v-if="item.passed"><i class="fad fa-angel text-gray-400" title="Passed"></i></template>
+                      <template v-if="item.passed"><iconify-icon icon="mdi:grave-stone" width="1em" height="1em" inline="false" title="Passed"></iconify-icon></template>
                       <small v-if="item.relation" class="font-normal uppercase text(xs gray-400)">{{ item.relation }}</small>
                     </figcaption>
                   </figure>
@@ -100,17 +103,17 @@
                 <page-figure img="assets/img/bio-me-6th.jpg" css="-rotate-3">6th Grade</page-figure>
                 <page-figure img="assets/img/bio-me-soccer.jpg" css="rotate-1">4th Grade</page-figure>
                 <page-figure img="assets/img/bio-snow-bank.jpg" css="rotate-3">Snow Banks</page-figure>
-                <page-figure img="assets/img/bio-snow.jpg" css="-rotate-2">Snow Storm <a href="#" class="w-8 h-8 bg-black text-white ring(2 white) flex items-center justify-center absolute -top-4 -right-4 cursor-pointer rounded-full" @click.prevent="showMapGB = false"><i class="fas fa-fw fa-times fa-lg"></i></a></page-figure>
+                <page-figure img="assets/img/bio-snow.jpg" css="-rotate-2">Snow Storm <a href="#" class="w-8 h-8 bg-black text-white ring(2 white) flex items-center justify-center absolute -top-4 -right-4 cursor-pointer rounded-full" @click.prevent="showMapGB = false"><iconify-icon icon="mdi:close" width="1em" height="1em" inline="false" class="text-2xl"></iconify-icon></a></page-figure>
               </div>
             </transition>
             <transition>
               <div v-if="showMapDC" class="modal px-6 flex items-center justify-center space-x-8 absolute inset-0 transition-all duration-200">
-                <page-figure img="assets/img/bio-me-erskine.jpg" css="rotate-1"><a href="https://www.hmdb.org/m.asp?m=151588" class="text-blue-600 hover:(text-blue-400) focus:(text-blue-400)">Erskine Rest Area</a> - Jacksonport, WI <a href="#" class="w-8 h-8 bg-black text-white ring(2 white) flex items-center justify-center absolute -top-4 -right-4 cursor-pointer rounded-full" @click.prevent="showMapDC = false"><i class="fas fa-fw fa-times fa-lg"></i></a></page-figure>
+                <page-figure img="assets/img/bio-me-erskine.jpg" css="rotate-1"><a href="https://www.hmdb.org/m.asp?m=151588" class="text-blue-600 hover:(text-blue-400) focus:(text-blue-400)">Erskine Rest Area</a> - Jacksonport, WI <a href="#" class="w-8 h-8 bg-black text-white ring(2 white) flex items-center justify-center absolute -top-4 -right-4 cursor-pointer rounded-full" @click.prevent="showMapDC = false"><iconify-icon icon="mdi:close" width="1em" height="1em" inline="false" class="text-2xl"></iconify-icon></a></page-figure>
               </div>
             </transition>
             <transition>
               <div v-if="showMapUP" class="modal px-6 flex items-center justify-center space-x-8 absolute inset-0 transition-all duration-200">
-                <page-figure img="assets/img/bio-camping.jpg" css="-rotate-2">Roughin' it <a href="#" class="w-8 h-8 bg-black text-white ring(2 white) flex items-center justify-center absolute -top-4 -right-4 cursor-pointer rounded-full" @click.prevent="showMapUP = false"><i class="fas fa-fw fa-times fa-lg"></i></a></page-figure>
+                <page-figure img="assets/img/bio-camping.jpg" css="-rotate-2">Roughin' it <a href="#" class="w-8 h-8 bg-black text-white ring(2 white) flex items-center justify-center absolute -top-4 -right-4 cursor-pointer rounded-full" @click.prevent="showMapUP = false"><iconify-icon icon="mdi:close" width="1em" height="1em" inline="false" class="text-2xl"></iconify-icon></a></page-figure>
               </div>
             </transition>
           </article>
@@ -177,17 +180,17 @@
         <page-section id="end" bg="assets/img/craig-erskine-huh.png">
           <page-heading sub="End of Line">Fin</page-heading>
           <article class="w-full min-h-screen max-w-screen-md flex flex-col">
-            <ul class="my-auto px-6 w-full text-[calc(3vw+3vh+2vmin)] flex items-center justify-center space-x-4">
-              <li v-for="(item, index) in soc">
-                <a :href="item.href" :class="'group text('+ item.color +' opacity-70) block relative transition duration-200 hover:(text-opacity-100 animate-blob) focus:(text-opacity-100 animate-blob)'">
+            <ul class="my-auto px-6 w-full text-[calc(3vw+3vh+2vmin)] flex justify-center space-x-4">
+              <li v-for="(item, index) in soc" class="flex">
+                <a :href="item.href" :class="'group py-8 h-full text('+ item.color +' opacity-70) flex items-center relative transition duration-200 hover:(text-opacity-100 animate-blob) focus:(text-opacity-100 animate-blob)'">
                   <template v-if="item.title == 'Craig Erskine'">
-                    <svg class="svg-inline--fa fa-fw fill-current" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <svg class="w-[94px] fill-current" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                       <path d="m0 256c0 141.386752 114.613248 256 256 256 94.756352 0 177.484544-51.48288 221.7472-128-9.612032-16.616448-21.04064-32.057344-34.0096-46.0416-31.61216 72.309504-103.771392 122.8416-187.7376 122.8416-113.109248 0-204.8-91.690752-204.8-204.8s91.690752-204.8 204.8-204.8c83.964928 0 156.124928 50.533632 187.7376 122.8416 12.96896-13.984256 24.397568-29.425152 34.0096-46.0416-44.26368-76.516864-126.991104-128-221.7472-128-141.386752 0-256 114.613248-256 256z" />
                       <path d="m109.4272 209.92c41.518848 29.042944 92.058368 46.08 146.5728 46.08 54.513408 0 105.05472-17.0368 146.5728-46.08-5.272064-16.783616-13.349376-32.32768-23.68-46.08-34.230272 25.718528-76.780032 40.96-122.8928 40.96s-88.661504-15.242496-122.8928-40.96c-10.329344 13.751808-18.408704 29.296896-23.68 46.08z" opacity=".33" />  
                     </svg>
                   </template>
                   <template v-else>
-                    <i :class="'fab fa-fw fa-'+ item.ico"></i>
+                    <iconify-icon :icon="item.ico" inline="false"></iconify-icon>
                   </template>
                   <b class="mt-2 px-3 py-2 bg(black opacity-75) text(sm gray-200) truncate pointer-events-none absolute -top-10 left-1/2 rounded opacity-0 shadow-2xl transform -translate-x-1/2 transition-all duration-100 group-hover:(mt-4 opacity-100) group-focus:(mt-4 opacity-100)">{{ item.title }} <i class="block not-italic text-xs opacity-50">{{ item.sub }}</i></b>
                 </a>
@@ -198,7 +201,7 @@
               <div class="flex items-center">
                 <hr class="flex-1 opacity-20" />
                 <a href="#" @click.prevent="selectedPerson = people[Math.floor(Math.random() * people.length)]" class="mx-3 w-32 h-32 bg(cover) flex cursor-pointer">
-                  <i class="fal fa-sync-alt fa-fw fa-spin mt-[30px] mx-auto text(white opacity-20 6xl)"></i>
+                  <iconify-icon icon="mdi:sync" inline="false" class="mt-[30px] mx-auto text(white opacity-20 6xl) animate-spin"></iconify-icon>
                 </a>
                 <hr class="flex-1 opacity-20" />
               </div>
@@ -216,7 +219,7 @@
 
     <script src="https://cdn.jsdelivr.net/combine/npm/twind/twind.umd.js,npm/twind/observe/observe.umd.js,npm/twind/colors/colors.umd.js"></script>
     <script src="https://unpkg.com/vue@2/dist/vue.min.js"></script>
-    <script src="https://kit.fontawesome.com/6d6156d427.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/iconify-icon/dist/iconify-icon.min.js"></script>
     <script>
       // components
       Vue.component('page-section', {
@@ -348,14 +351,14 @@
                 title: 'Dribbble',
                 sub: 'Design Shots',
                 href: 'https://dribbble.com/craigerskine/',
-                ico: 'dribbble',
+                ico: 'fa6-brands:dribbble',
                 color: 'pink-500',
               },
               {
                 title: 'Github',
                 sub: 'Code Projects',
                 href: 'https://github.com/craigerskine/',
-                ico: 'github',
+                ico: 'fa6-brands:github',
                 color: 'gray-500',
               },
             ],
