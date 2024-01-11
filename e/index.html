@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="min-h-screen bg(gray-900 grid fixed)" hidden>
+<html lang="en" class="min-h-screen bg-transparent motion-safe:(scroll-smooth)">
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
@@ -7,29 +7,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="https://fonts.gstatic.com" rel="preconnect" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;400;700&amp;display=swap" rel="stylesheet" />
-    <style>
-      @media (prefers-reduced-motion: no-preference){
-        html { scroll-behavior: smooth; -webkit-scroll-behavior: smooth; }
-      }
-    </style>
   </head>
-  <body class="min-h-screen text-gray-400">
+  <body class="min-h-screen bg-(gray-900 grid fixed) text-gray-400 !block" style="display: none;">
 
     <div id="app" class="min-h-screen" v-cloak>
       <main>
         <ul class="space-x-3 flex fixed top-3 right-3 z-50">
-          <li><button type="button" class="p-2 ring(1 inset current) outline-none leading-none block rounded transition duration-100 hover:(text-white) focus:(text-white outline-none)" @click="window.scrollBy(0, -(document.documentElement.clientHeight * 2.5))"><iconify-icon icon="mdi:arrow-up" width="1em" height="1em" inline="false"></iconify-icon></button></li>
-          <li><button type="button" class="p-2 ring(1 inset current) outline-none leading-none block rounded transition duration-100 hover:(text-white) focus:(text-white outline-none)" @click="window.scrollBy(0, (document.documentElement.clientHeight * 2.5))"><iconify-icon icon="mdi:arrow-down" width="1em" height="1em" inline="false"></iconify-icon></button></li>
+          <li><button type="button" class="p-2 ring-(1 inset current) outline-none leading-none block rounded motion-safe:(transition) hover:(text-white) focus:(text-white outline-none)" @click.prevent="scrollUp"><iconify-icon icon="mdi:arrow-up" inline></iconify-icon></button></li>
+          <li><button type="button" class="p-2 ring-(1 inset current) outline-none leading-none block rounded motion-safe:(transition) hover:(text-white) focus:(text-white outline-none)" @click.prevent="scrollDown"><iconify-icon icon="mdi:arrow-down" inline></iconify-icon></button></li>
         </ul>
         <page-section id="start" bg="assets/img/bio-craig.png">
-          <a href="https://craigerskine.com/" class="p-4 opacity-50 transition duration-100 hover:(opacity-100) focus:(opacity-100 outline-none) lg:(space-x-12 flex items-center)">
+          <a href="https://craigerskine.com/" class="p-4 opacity-50 motion-safe:(transition) hover:(opacity-100) focus:(opacity-100 outline-none) lg:(space-x-12 flex items-center)">
             <section><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" class="mx-auto my-3 p-3 w-24 h-24 fill-current text-white block lg:(p-4 w-48 h-48) animate-throb"><title>Craig Erskine logo</title><g fill-rule="evenodd"><path d="M42.747122,81.9990174 C58.9655226,93.344021 78.7054673,100 100,100 C121.294533,100 141.034477,93.344021 157.252882,81.9990144 C155.193825,75.4436177 152.039977,69.3730608 148.005622,64.0016292 C134.634094,74.0472141 118.012221,80 100,80 C81.9877797,80 65.3659077,74.0472146 51.9943761,64.0016357 C47.9600255,69.3730625 44.8061777,75.4436199 42.747122,81.9990174 Z" opacity=".25"></path><path d="M100,200 C44.7715223,200 0,155.228478 0,100 C0,44.7715223 44.7715223,0 100,0 C137.038592,0 169.374042,20.1365308 186.656057,50.0592979 C182.902635,56.5581213 178.439143,62.5953278 173.371615,68.0648818 C161.041547,39.7757571 132.830213,20 100,20 C55.8172178,20 20,55.8172178 20,100 C20,144.182782 55.8172178,180 100,180 C132.767816,180 160.934295,160.299342 173.301142,132.096319 C178.366895,137.552678 182.830857,143.575528 186.587453,150.059298 C169.288565,179.916659 136.989642,200 100,200 Z"></path></g></svg></section>
             <section>
-              <h1 class="mb-3 font-black leading-tight text(4xl gray-200) lg:(mb-6 text-[calc(3vw+3vh+.5vmin)])">
+              <h1 class="mb-3 font-black leading-tight text-(4xl gray-200) lg:(mb-6 text-[calc(3vw+3vh+.5vmin)])">
                 {{ intro_fname }}
                 <b class="opacity-50">{{ intro_lname }}</b>
               </h1>
-              <p class="max-w-sm lg:(max-w-2xl text(2xl) leading-normal)">
+              <p class="max-w-sm lg:(max-w-2xl text-2xl leading-normal)">
                 I'm a <template v-for="(item, index) in interests"><template v-if="index == interests.length - 1">and </template><b class="text-gray-200">{{ item.title }}</b><template v-if="index !== interests.length - 1">, </template></template>
                 who also enjoys tinkering with <template v-for="(item, index) in passion"><template v-if="index == passion.length - 1">and </template><b class="text-gray-200">{{ item.title }}</b><template v-if="index !== passion.length - 1">, </template></template>.
               </p>
@@ -39,9 +34,9 @@
           <nav>
             <ul class="inline-flex space-x-5">
               <li v-for="(nav, index) in ['family','location','art','book','hobbies','guitar','end',]">
-                <a :href="'#section-'+ nav" class="group text-xs font-bold capitalize flex flex-col items-center transition hover:(text-white) focus:(text-white) md:(text-base)">
+                <a :href="'#section-'+ nav" class="group text-xs font-bold capitalize flex flex-col items-center motion-safe:(transition) hover:(text-white) focus:(text-white) md:(text-base)">
                   <span><i class="mr-1 text-sm hidden opacity-50 md:(inline-block)">#</i> {{ nav }}</span>
-                  <b class="mt-1 h-px w-0 bg-current w-full transition-all group-hover:(w-full) group-focus:(w-full)"></b>
+                  <b class="mt-1 h-px w-0 bg-current motion-safe:(transition-all) group-hover:(w-full) group-focus:(w-full)"></b>
                 </a>
               </li>
             </ul>
@@ -52,17 +47,17 @@
           <article class="p-4 space-y-10">
             <template v-for="(item, index) in family">
               <ul class="p-4 -space-x-3 flex justify-center">
-                <li v-for="(item, index) in item.list" :class="['max-w-[300px] w-1/5 relative shadow-flat transition-all duration-100 transform hover:(scale-150 rotate-0 z-20) lg:(w-full)', ((index % 2 == 0) ? 'rotate-3' : '-rotate-1')]">
+                <li v-for="(item, index) in item.list" :class="['max-w-[300px] w-1/5 relative shadow-flat motion-safe:(transition-all) hover:(scale-150 rotate-0 z-20) lg:(w-full)', ((index % 2 == 0) ? 'rotate-3' : '-rotate-1')]">
                   <figure class="p-2 bg-white rounded">
                     <img :src="'assets/img/bio-'+ slug(item.title) +'.jpg'" :alt="item.title" class="rounded" />
-                    <figcaption class="pt-2 pb-1 px-2 space-x-3 font-bold text(base gray-700) hidden flex-wrap items-center lg:(text-lg flex)">
+                    <figcaption class="pt-2 pb-1 px-2 space-x-3 font-bold text-(base gray-700) hidden flex-wrap items-center lg:(text-lg flex)">
                       <template v-if="item.relation && item.relation !== 'Sister' && item.relation !== 'Brother'">
                         <iconify-icon v-if="item.relation == 'Wife'" icon="mdi:ring" inline="false" class="text-2xl text-pink-500"></iconify-icon>
                         <iconify-icon v-if="item.relation == 'Daughter'" icon="mdi:school" inline="false" class="text-2xl text-blue-500"></iconify-icon>
                       </template>
                       <b class="flex-1">{{ item.title }}</b>
-                      <template v-if="item.passed"><iconify-icon icon="mdi:grave-stone" width="1em" height="1em" inline="false" title="Passed"></iconify-icon></template>
-                      <small v-if="item.relation" class="font-normal uppercase text(xs gray-400)">{{ item.relation }}</small>
+                      <template v-if="item.passed"><iconify-icon icon="mdi:grave-stone" inline title="Passed"></iconify-icon></template>
+                      <small v-if="item.relation" class="font-normal uppercase text-(xs gray-400)">{{ item.relation }}</small>
                     </figcaption>
                   </figure>
                 </li>
@@ -74,7 +69,7 @@
           <page-heading sub="Wisconsin">Raised in</page-heading>
           <article class="container mx-auto p-4 flex items-center justify-center relative">
             <div class="map">
-              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 600 640" role="img" class="w-auto max-w-full h-[80vh] fill-current transition-all duration-300 transform hover:(scale-110)">
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 600 640" role="img" class="w-auto max-w-full h-[80vh] fill-current motion-safe:(transition-all) hover:(scale-110)">
                 <defs>
                   <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="grad-light">
                     <stop stop-color="#FFFFFF" stop-opacity="0.5" offset="0%"></stop>
@@ -87,33 +82,33 @@
                     <use class="text-green-700" xlink:href="#path-wi"></use>
                     <use fill-opacity="0.5" fill="url(#grad-light)" xlink:href="#path-wi"></use>
                   </g>
-                  <g id="map-wi-dots" transform="translate(474, 230)" class="text(orange-400 opacity-80)">
+                  <g id="map-wi-dots" transform="translate(474, 230)" class="text-(orange-400/80)">
                     <circle id="map-dot-gb" class="cursor-pointer animate-pulse" @click="showMapGB = true" opacity="0.75" cx="25" cy="111" r="25"></circle>
-                    <text x="-5" y="148" class="text(xs white opacity-75) font-sans">Green Bay</text>
+                    <text x="-5" y="148" class="text-(xs white/75) font-sans">Green Bay</text>
                     <circle id="map-dot-dc" class="cursor-pointer animate-pulse" @click="showMapDC = true" opacity="0.75" cx="92" cy="58" r="10"></circle>
-                    <text x="55" y="80" class="text(xs white opacity-75) font-sans">Door County</text>
+                    <text x="55" y="80" class="text-(xs white/75) font-sans">Door County</text>
                     <circle id="map-dot-up" class="cursor-pointer animate-pulse" @click="showMapUP = true" opacity="0.75" cx="16" cy="10" r="10"></circle>
-                    <text x="-3" y="32" class="text(xs white opacity-75) font-sans">Crivitz</text>
+                    <text x="-3" y="32" class="text-(xs white/75) font-sans">Crivitz</text>
                   </g>
                 </g>
               </svg>
             </div>
             <transition>
-              <div v-if="showMapGB" class="modal w-full px-6 flex items-center justify-center -space-x-4 absolute inset-0 transition-all duration-200">
+              <div v-if="showMapGB" class="modal w-full px-6 flex items-center justify-center -space-x-4 absolute inset-0 motion-safe:(transition-all)">
                 <page-figure img="assets/img/bio-me-6th.jpg" css="-rotate-3">6th Grade</page-figure>
                 <page-figure img="assets/img/bio-me-soccer.jpg" css="rotate-1">4th Grade</page-figure>
                 <page-figure img="assets/img/bio-snow-bank.jpg" css="rotate-3">Snow Banks</page-figure>
-                <page-figure img="assets/img/bio-snow.jpg" css="-rotate-2">Snow Storm <a href="#" class="w-8 h-8 bg-black text-white ring(2 white) flex items-center justify-center absolute -top-4 -right-4 cursor-pointer rounded-full" @click.prevent="showMapGB = false"><iconify-icon icon="mdi:close" width="1em" height="1em" inline="false" class="text-2xl"></iconify-icon></a></page-figure>
+                <page-figure img="assets/img/bio-snow.jpg" css="-rotate-2">Snow Storm <a href="#" class="w-8 h-8 bg-black text-white ring-(2 white) flex items-center justify-center absolute -top-4 -right-4 cursor-pointer rounded-full" @click.prevent="showMapGB = false"><iconify-icon icon="mdi:close" inline class="text-2xl"></iconify-icon></a></page-figure>
               </div>
             </transition>
             <transition>
-              <div v-if="showMapDC" class="modal px-6 flex items-center justify-center space-x-8 absolute inset-0 transition-all duration-200">
-                <page-figure img="assets/img/bio-me-erskine.jpg" css="rotate-1"><a href="https://www.hmdb.org/m.asp?m=151588" class="text-blue-600 hover:(text-blue-400) focus:(text-blue-400)">Erskine Rest Area</a> - Jacksonport, WI <a href="#" class="w-8 h-8 bg-black text-white ring(2 white) flex items-center justify-center absolute -top-4 -right-4 cursor-pointer rounded-full" @click.prevent="showMapDC = false"><iconify-icon icon="mdi:close" width="1em" height="1em" inline="false" class="text-2xl"></iconify-icon></a></page-figure>
+              <div v-if="showMapDC" class="modal px-6 flex items-center justify-center space-x-8 absolute inset-0 motion-safe:(transition-all)">
+                <page-figure img="assets/img/bio-me-erskine.jpg" css="rotate-1"><a href="https://www.hmdb.org/m.asp?m=151588" class="text-blue-600 hover:(text-blue-400) focus:(text-blue-400)">Erskine Rest Area</a> - Jacksonport, WI <a href="#" class="w-8 h-8 bg-black text-white ring-(2 white) flex items-center justify-center absolute -top-4 -right-4 cursor-pointer rounded-full" @click.prevent="showMapDC = false"><iconify-icon icon="mdi:close" inline class="text-2xl"></iconify-icon></a></page-figure>
               </div>
             </transition>
             <transition>
-              <div v-if="showMapUP" class="modal px-6 flex items-center justify-center space-x-8 absolute inset-0 transition-all duration-200">
-                <page-figure img="assets/img/bio-camping.jpg" css="-rotate-2">Roughin' it <a href="#" class="w-8 h-8 bg-black text-white ring(2 white) flex items-center justify-center absolute -top-4 -right-4 cursor-pointer rounded-full" @click.prevent="showMapUP = false"><iconify-icon icon="mdi:close" width="1em" height="1em" inline="false" class="text-2xl"></iconify-icon></a></page-figure>
+              <div v-if="showMapUP" class="modal px-6 flex items-center justify-center space-x-8 absolute inset-0 motion-safe:(transition-all)">
+                <page-figure img="assets/img/bio-camping.jpg" css="-rotate-2">Roughin' it <a href="#" class="w-8 h-8 bg-black text-white ring-(2 white) flex items-center justify-center absolute -top-4 -right-4 cursor-pointer rounded-full" @click.prevent="showMapUP = false"><iconify-icon icon="mdi:close" inline class="text-2xl"></iconify-icon></a></page-figure>
               </div>
             </transition>
           </article>
@@ -122,9 +117,9 @@
           <page-heading sub="Music & TV">Media</page-heading>
           <article class="w-full h-screen flex flex-col">
             <div v-for="(type, index) in media" class="w-full h-full flex-1 flex">
-              <a :href="item.href" v-for="(item, index) in type.list" :class="['flex bg('+ ((type.title == 'Audio') ? 'blue' : 'green') +'-500 opacity-'+ (index + 1) +'0) relative opacity-30 transition-all duration-200', ((type.title == 'Audio') ? 'w-1/3 hover:(w-1/2 z-30 opacity-100)' : 'w-1/2 hover:(w-full z-30 opacity-100)')]">
-                <figure class="w-full bg(cover center) relative" :style="'background-image: url(\'assets/img/'+ slug(type.title) +'-'+ slug(item.title) +'.jpg\')'">
-                  <figcaption class="p-2 bg(gradient-to-b) from-transparent to-black text(xs right white opacity-80) font-black absolute bottom-0 inset-x-0 lg:(p-8 text-2xl)">{{ item.title }}</figcaption>
+              <a :href="item.href" v-for="(item, index) in type.list" :class="['flex bg-('+ ((type.title == 'Audio') ? 'blue' : 'green') +'-500 opacity-'+ (index + 1) +'0) relative opacity-30 motion-safe:(transition-all)', ((type.title == 'Audio') ? 'w-1/3 hover:(w-1/2 z-30 opacity-100)' : 'w-1/2 hover:(w-full z-30 opacity-100)')]">
+                <figure class="w-full bg-(cover center) relative" :style="'background-image: url(\'assets/img/'+ slug(type.title) +'-'+ slug(item.title) +'.jpg\')'">
+                  <figcaption class="p-2 bg-(gradient-to-b) from-transparent to-black text-(xs right white/80) font-black absolute bottom-0 inset-x-0 lg:(p-8 text-2xl)">{{ item.title }}</figcaption>
                 </figure>
               </a>
             </div>
@@ -133,10 +128,10 @@
         <page-section id="art" bg="assets/img/bg-art.jpg">
           <page-heading sub="Sketches">Art</page-heading>
           <article class="px-4 w-full flex">
-            <a href="#section-art" @click.prevent v-for="(item, index) in art" class="group p-4 w-1/5 flex items-center transition-all duration-300 hover:(w-full z-30)">
-              <figure :class="['w-full relative transform', ((index % 2 == 0) ? 'rotate-3' : '-rotate-1')]">
+            <a href="#section-art" @click.prevent v-for="(item, index) in art" class="group p-4 w-1/5 flex items-center motion-safe:(transition-all) hover:(w-full z-30)">
+              <figure :class="['w-full relative', ((index % 2 == 0) ? 'rotate-3' : '-rotate-1')]">
                 <img :src="'assets/img/art-'+ slug(item.title) +'.jpg'" :alt="item.title" :class="['mx-auto rounded shadow-flat']" />
-                <figcaption class="p-2 text-center font-bold opacity-0 transition duration-300 group-hover:(opacity-100) group-focus:(opacity-100)">{{ item.title }}</figcaption>
+                <figcaption class="p-2 text-center font-bold opacity-0 motion-safe:(transition) group-hover:(opacity-100) group-focus:(opacity-100)">{{ item.title }}</figcaption>
               </figure>
             </a>
           </article>
@@ -144,24 +139,24 @@
         <page-section id="book">
           <page-heading sub="Geekery">Book</page-heading>
           <article class="w-full min-h-screen flex">
-            <a href="https://amzn.com/dp/1430216182?tag=qrayg-20" class="group flex-1 flex relative opacity-30 transition duration-100 transform scale-95 hover:(z-30 opacity-100 rotate-1) focus:(z-30 opacity-100 rotate-1)"><figure class="bg(right cover) flex-1 rounded-lg" style="background-image: url('assets/img/book-cover.jpg');"></figure></a>
-            <a href="https://amzn.com/dp/1430216182?tag=qrayg-20" class="group flex-1 flex relative opacity-30 transition duration-100 transform scale-95 hover:(z-30 opacity-100 -rotate-1) focus:(z-30 opacity-100 -rotate-1)"><figure class="bg(center cover) flex-1 rounded-lg" style="background-image: url('assets/img/book-web-920.jpg');"></figure></a>
+            <a href="https://amzn.com/dp/1430216182?tag=qrayg-20" class="group flex-1 flex relative opacity-30 motion-safe:(transition) scale-95 hover:(z-30 opacity-100 rotate-1) focus:(z-30 opacity-100 rotate-1)"><figure class="bg-(right cover) flex-1 rounded-lg" style="background-image: url('assets/img/book-cover.jpg');"></figure></a>
+            <a href="https://amzn.com/dp/1430216182?tag=qrayg-20" class="group flex-1 flex relative opacity-30 motion-safe:(transition) scale-95 hover:(z-30 opacity-100 -rotate-1) focus:(z-30 opacity-100 -rotate-1)"><figure class="bg-(center cover) flex-1 rounded-lg" style="background-image: url('assets/img/book-web-920.jpg');"></figure></a>
           </article>
         </page-section>
         <page-section id="hobbies" bg="assets/img/bg-hobbies.jpg">
           <page-heading sub="Tech">Hobbies</page-heading>
           <article>
             <ul class="px-6 flex items-center">
-              <li v-for="(item, index) in hobbies" class="px-6 w-1/3 hover:w-2/3 transition-all duration-200">
-                <figure class="block relative">
-                  <a v-for="(figure, index) in item.figures" :href="((figure.href == '') ? '#section-hobbies' : figure.href)" :class="['group w-5/6 relative block transtion duration-200', ((index === 1) ? 'absolute right-10 -top-4 z-10 opacity-25 hover:(z-30 opacity-100)' : 'z-20')]">
+              <li v-for="(item, index) in hobbies" class="px-6 w-1/3">
+                <div class="flex-(& col) gap-8">
+                  <p class="text-sm font-bold uppercase opacity-50">{{ item.title }}</p>
+                  <a v-for="(figure, index) in item.figures" :href="((figure.href == '') ? '#section-hobbies' : figure.href)" class="group w-2/3 flex relative opacity-75 motion-safe:(transition-all) hover:(opacity-100 w-11/12)">
                     <figure>
-                      <img :src="'assets/img/hobby-'+ figure.img +'.jpg'" alt="figure.title" class="w-full rounded shadow-flat" />
-                      <figcaption class="m-1 py-1 px-4 bg(white opacity-75) text(gray-800 sm) font-bold hidden absolute top-0 right-0 rounded md:(block group-hover:animate-bounce)">{{ figure.title }}</figcaption>
+                      <img :src="'assets/img/hobby-'+ figure.img +'.jpg'" alt="figure.title" class="w-full rounded shadow-flat group-hover:(ring-([6px] yellow-500))" />
+                      <figcaption class="m-1 py-1 px-4 bg-white/75 text-(gray-800 sm) font-bold hidden absolute top-0 right-0 rounded md:(block group-hover:animate-bounce)">{{ figure.title }}</figcaption>
                     </figure>
                   </a>
-                  <figcaption class="p-2 text-sm font-bold uppercase opacity-50">{{ item.title }}</figcaption>
-                </figure>
+                </div>
               </li>
             </ul>
           </article>
@@ -169,10 +164,10 @@
         <page-section id="guitar" bg="assets/img/bg-guitar.jpg">
           <page-heading sub="Gear">Guitar</page-heading>
           <article class="flex -space-x-3">
-            <a :href="item.href" v-for="(item, index) in guitars" class="group relative relative z-10 transform rotate-12 transition-all duration-250 hover:(rotate-0 z-20) focus:(rotate-0 z-20)">
+            <a :href="item.href" v-for="(item, index) in guitars" class="group relative relative z-10 rotate-12 motion-safe:(transition-all) hover:(rotate-0 z-20) focus:(rotate-0 z-20)">
               <figure>
-                <img :src="'assets/img/guitar-'+ item.type +'.jpg'" :alt="item.title" class="rounded shadow-flat transition duration-200 group-hover:(bg-yellow-500 ring([6px] yellow-500)) group-focus:(bg-yellow-500 ring([6px] yellow-500))" />
-                <figcaption class="p-2 text(gray-800 sm) font-bold absolute right-0 bottom-0">{{ item.title }} <template v-if="item.pending"><small class="ml-2 text-red-500 animate-pulse">Pending</small></template></figcaption>
+                <img :src="'assets/img/guitar-'+ item.type +'.jpg'" :alt="item.title" class="rounded shadow-flat motion-safe:(transition) group-hover:(bg-yellow-500 ring-([6px] yellow-500)) group-focus:(bg-yellow-500 ring-([6px] yellow-500))" />
+                <figcaption class="p-2 text-(gray-800 sm) font-bold absolute right-0 bottom-0">{{ item.title }} <template v-if="item.pending"><small class="ml-2 text-red-500 animate-pulse">Pending</small></template></figcaption>
               </figure>
             </a>
           </article>
@@ -180,9 +175,9 @@
         <page-section id="end" bg="assets/img/craig-erskine-huh.png">
           <page-heading sub="End of Line">Fin</page-heading>
           <article class="w-full min-h-screen max-w-screen-md flex flex-col">
-            <ul class="my-auto px-6 w-full text-[calc(3vw+3vh+2vmin)] flex justify-center space-x-4">
+            <ul class="my-auto px-6 w-full text-[calc(3vw+3vh+2vmin)] flex justify-center gap-5 md:(gap-16)">
               <li v-for="(item, index) in soc" class="flex">
-                <a :href="item.href" :class="'group py-8 h-full text('+ item.color +' opacity-70) flex items-center relative transition duration-200 hover:(text-opacity-100 animate-blob) focus:(text-opacity-100 animate-blob)'">
+                <a :href="item.href" :class="'group py-8 h-full text-('+ item.color +' opacity-70) flex items-center relative motion-safe:(transition) hover:(text-opacity-100 animate-blob) focus:(text-opacity-100 animate-blob)'">
                   <template v-if="item.title == 'Craig Erskine'">
                     <svg class="w-[1em] fill-current" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                       <path d="m0 256c0 141.386752 114.613248 256 256 256 94.756352 0 177.484544-51.48288 221.7472-128-9.612032-16.616448-21.04064-32.057344-34.0096-46.0416-31.61216 72.309504-103.771392 122.8416-187.7376 122.8416-113.109248 0-204.8-91.690752-204.8-204.8s91.690752-204.8 204.8-204.8c83.964928 0 156.124928 50.533632 187.7376 122.8416 12.96896-13.984256 24.397568-29.425152 34.0096-46.0416-44.26368-76.516864-126.991104-128-221.7472-128-141.386752 0-256 114.613248-256 256z" />
@@ -192,80 +187,38 @@
                   <template v-else>
                     <iconify-icon :icon="item.ico" inline="false"></iconify-icon>
                   </template>
-                  <b class="mt-2 px-3 py-2 bg(black opacity-75) text(sm gray-200) truncate pointer-events-none absolute -top-10 left-1/2 rounded opacity-0 shadow-2xl transform -translate-x-1/2 transition-all duration-100 group-hover:(mt-4 opacity-100) group-focus:(mt-4 opacity-100)">{{ item.title }} <i class="block not-italic text-xs opacity-50">{{ item.sub }}</i></b>
+                  <b class="mt-2 px-3 py-2 bg-black/75 text-(sm gray-200) truncate pointer-events-none absolute -top-10 left-1/2 rounded opacity-0 shadow-2xl -translate-x-1/2 motion-safe:(transition-all) group-hover:(mt-4 opacity-100) group-focus:(mt-4 opacity-100)">{{ item.title }} <i class="block not-italic text-xs opacity-50">{{ item.sub }}</i></b>
                 </a>
               </li>
             </ul>
-            <div class="mt-auto pt-8 px-6 w-full hidden">
-              <p class="pb-8 text(yellow-500 center) font-black uppercase">Who's Up Next</p>
+            <div class="mt-auto pt-8 px-6 w-full">
+              <p class="pb-8 text-(yellow-500 center) font-black uppercase">Who's Up Next</p>
               <div class="flex items-center">
                 <hr class="flex-1 opacity-20" />
-                <a href="#" @click.prevent="selectedPerson = people[Math.floor(Math.random() * people.length)]" class="mx-3 w-32 h-32 bg(cover) flex cursor-pointer">
-                  <iconify-icon icon="mdi:sync" inline="false" class="mt-[30px] mx-auto text(white opacity-20 6xl) animate-spin"></iconify-icon>
+                <a href="#" @click.prevent="selectedPerson = people[Math.floor(Math.random() * people.length)]" class="mx-3 w-32 h-32 bg-cover flex cursor-pointer animate-spin">
+                  <iconify-icon icon="mdi:sync" inline="false" class="m-auto text-(white/20 6xl)"></iconify-icon>
                 </a>
                 <hr class="flex-1 opacity-20" />
               </div>
               <section class="text-center flex items-center justify-center">
-                <h1 class="p-4 pb-12 font-black leading-tight text-3xl first-line:(:text-white :text-[calc(2vw+2vh+.5vmin)])">
+                <h1 class="p-4 pb-12 font-black leading-tight text-3xl first-line:(text-white text-[calc(2vw+2vh+.5vmin)])">
                   {{ selectedPerson.name }}
                 </h1>
               </section>
             </div>
-            <figure class="absolute -bottom-4 -right-4 opacity-30 transform -rotate-45 transition duration-300 hover:(opacity-100)"><img src="assets/img/chicken.png" alt="Chicken" /></figure>
+            <figure class="absolute -bottom-4 -right-4 opacity-30 -rotate-45 motion-safe:(transition) hover:(opacity-100)"><img src="assets/img/chicken.png" alt="Chicken" /></figure>
           </article>
         </page-section>
       </main>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/combine/npm/twind/twind.umd.js,npm/twind/observe/observe.umd.js,npm/twind/colors/colors.umd.js"></script>
-    <script src="https://unpkg.com/vue@2/dist/vue.min.js"></script>
-    <script src="https://unpkg.com/iconify-icon/dist/iconify-icon.min.js"></script>
-    <script>
-      // components
-      Vue.component('page-section', {
-        template: `
-          <section :id="'section-'+ id" class="h-[250vh] relative">
-            <section class="min-h-screen flex flex-col items-center justify-center sticky top-0 overflow-hidden relative">
-              <slot></slot>
-              <div class="scene bg(fixed cover center) absolute inset-0 z-[-1] opacity-10" :style="((bg) ? 'background-image: url('+ bg +')' : '')"></div>
-            </section>
-          </section>
-        `,
-        props: {
-          id: String,
-          bg: String,
-        },
-      });
-      Vue.component('page-heading', {
-        template: `
-          <h2 class="font-black text(3xl gray-200 opacity-75) absolute top-5 left-5 z-20 md:(text-[calc(3vw+3vh+.5vmin)] top-16 left-16)">
-            <slot></slot>
-            <small class="pl-2 text-lg uppercase block opacity-50 md:(pt-[calc(.66vw+.66vh+.66vmin)])">{{ sub }}</small>
-          </h2>
-        `,
-        props: {
-          sub: String,
-        },
-      });
+    <script type="module">
+      // icons
+      import 'https://esm.run/iconify-icon';    
 
-      Vue.component('page-figure', {
-        template: `
-          <figure :class="'p-4 bg-white relative rounded shadow-2xl transform transition-all duration-300 hover:(scale-125 z-20) '+ css">
-            <img :src="img" />
-            <figcaption class="pt-4 text-gray-700 font-bold lg:text-lg">
-              <slot></slot>
-            </figcaption>
-          </figure>
-        `,
-        props: {
-          img: String,
-          css: String,
-        },
-      });
-
-      // data
-      var app = new Vue({
-        el: '#app',
+      // vue
+      import { createApp } from 'https://esm.run/vue@3/dist/vue.esm-browser.js'
+      createApp({
         data() {
           return {
             showMapGB: false,
@@ -331,7 +284,7 @@
               { title: 'Tree', },
             ],
             hobbies: [
-              { title: 'Soldering', figures: [{title: 'Keyboards', img: 'kb', href: 'https://thekey.company/collections/minivan'}, {title: 'Unhinged GBA SP', img: 'gba', href: 'https://boxypixel.com/'}], },
+              { title: 'Soldering', figures: [{title: 'Keyboards', img: 'kb', href: 'https://qrayg.com/gear/#keyboards'}, {title: 'Unhinged GBA SP', img: 'gba', href: 'https://boxypixel.com/'}], },
               { title: 'Open Source', figures: [{title: 'Website', img: 'oe', href: 'https://openemu.org/'}, {title: 'Controller Illustrations', img: 'oe-prefs', href: 'https://dribbble.com/craigerskine/projects/464116-OpenEmu'}], },
               { title: 'Gaming / Audio', figures: [{title: 'Game Collection', img: 'pxl', href: 'https://pxl.media/'}, {title: 'Theatre Signs', img: 'signs', href: 'https://figma.com/file/qm2FxCwVQAdLGycvPO4zSn/theater-signs?node-id=0%3A1'}], },
             ],
@@ -363,9 +316,9 @@
               },
             ],
             people: [
-              { name: 'First Last' },
+              { name: 'Smitty Werbenyagermanjensen' },
             ],
-            selectedPerson: { name: '' },
+            selectedPerson: { name: '' },            
           }
         },
         methods: {
@@ -377,24 +330,67 @@
             .replace(/^-+/, '')             // Trim - from start of text
             .replace(/-+$/, '');            // Trim - from end of text
           },
+          scrollDown() {
+            window.scrollBy(0, (document.documentElement.clientHeight * 2.5));
+          },
+          scrollUp() {
+            window.scrollBy(0, -(document.documentElement.clientHeight * 2.5));
+          },
         },
-      });
+      })
+      .component('page-section', {
+        template: `
+          <section :id="'section-'+ id" class="h-[250vh] relative">
+            <section class="min-h-screen flex flex-col items-center justify-center sticky top-0 overflow-hidden relative">
+              <slot></slot>
+              <div class="scene bg-(fixed cover center) absolute inset-0 z-[-1] opacity-10" :style="((bg) ? 'background-image: url('+ bg +')' : '')"></div>
+            </section>
+          </section>
+        `,
+        props: {
+          id: String,
+          bg: String,
+        },
+      })
+      .component('page-heading', {
+        template: `
+          <h2 class="font-black text-(3xl gray-200/75) absolute top-5 left-5 z-20 md:(text-[calc(3vw+3vh+.5vmin)] top-16 left-16)">
+            <slot></slot>
+            <small class="pl-2 text-lg uppercase block opacity-50 md:(pt-[calc(.66vw+.66vh+.66vmin)])">{{ sub }}</small>
+          </h2>
+        `,
+        props: {
+          sub: String,
+        },
+      })
+      .component('page-figure', {
+        template: `
+          <figure :class="'p-4 bg-white relative rounded shadow-2xl motion-safe:(transition-all) hover:(scale-125 z-20) '+ css">
+            <img :src="img" />
+            <figcaption class="pt-4 text-gray-700 font-bold lg:text-lg">
+              <slot></slot>
+            </figcaption>
+          </figure>
+        `,
+        props: {
+          img: String,
+          css: String,
+        },
+      })
+      .mount('#app');
 
-      twind.setup({
-        mode: "silent",
+      // twind
+      import { install, injectGlobal } from 'https://esm.run/@twind/core';
+      import presetAutoprefix from 'https://esm.run/@twind/preset-autoprefix';
+      import presetTailwind from 'https://esm.run/@twind/preset-tailwind';
+      install({
+        presets: [presetAutoprefix(), presetTailwind()],
+        darkMode: 'class',
+        hash: false,
         theme: {
           extend: {
-            colors: {
-              gray: twindColors.gray,
-              cyan: twindColors.cyan,
-              fuchsia: twindColors.fuchsia,
-              lime: twindColors.lime,
-              orange: twindColors.orange,
-              rose: twindColors.rose,
-              teal: twindColors.teal,
-            },
-            fontFamily: (theme) => ({
-              sans: 'Inter,'+ theme('fontFamily.sans'),
+            fontFamily: ({ theme }) => ({
+              sans: ['Inter', ...theme('fontFamily.sans')],
             }),
             boxShadow: {
               'flat': '0 0 15px 1px rgba(0,0,0,.66)',
@@ -419,18 +415,15 @@
           },
         },
       })
-      twind.tw(() => ({
-        '@global': {
-          '.v-leave-active': { '@apply': 'hidden', },
-          '.v-enter-active': { '@apply': 'opacity-[.0001] scale-75', },
-          '.bg-grid': { 'background-image': 'url("data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 4 4\' width=\'4\' height=\'4\'><rect x=\'0\' y=\'0\' width=\'2\' height=\'2\' fill=\'rgba(1,0,32,.33)\'></rect></svg>")', },
-          '.scene': { 'transform': 'translateY(var(--translateY))', 'will-change': 'transform', },
-          //':root [v-cloak]': { '@apply': 'hidden', },
+      // global
+      injectGlobal`
+        @layer base {
+          [v-cloak],.v-leave-active { @apply hidden; }
+          .v-enter-active { @apply opacity-[.0001] scale-75; }
+          .bg-grid { background-image: url("data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 4 4\' width=\'4\' height=\'4\'><rect x=\'0\' y=\'0\' width=\'2\' height=\'2\' fill=\'rgba(1,0,32,.33)\'></rect></svg>"); }
+          .scene { transform: translateY(var(--translateY)); will-change: transform; }
         }
-      }))
-      twindObserve.observe(document.documentElement);
-      document.documentElement.removeAttribute('hidden');
-
+      `
     </script>
 
   </body>
