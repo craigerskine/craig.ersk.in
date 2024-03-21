@@ -1,26 +1,29 @@
 <!doctype html>
-<html lang="en" class="min-h-screen bg-transparent motion-safe:(scroll-smooth)">
+<html lang="en" class="min-h-screen bg-transparent overflow-hidden">
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <title>Craig Erskine</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link href="https://fonts.gstatic.com" rel="preconnect" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;400;700&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+
   </head>
   <body class="min-h-screen bg-(gray-900 grid fixed) text-gray-400 !block" style="display: none;">
 
-    <div id="app" class="min-h-screen" v-cloak>
+    <div id="app" class="w-full h-screen min-h-screen snap-y snap-mandatory overflow-y-auto motion-safe:(scroll-smooth)" v-cloak>
       <main>
         <ul class="space-x-3 flex fixed top-3 right-3 z-50">
           <li><button type="button" class="p-2 ring-(1 inset current) outline-none leading-none block rounded motion-safe:(transition) hover:(text-white) focus:(text-white outline-none)" @click.prevent="scrollUp"><iconify-icon icon="mdi:arrow-up" inline></iconify-icon></button></li>
           <li><button type="button" class="p-2 ring-(1 inset current) outline-none leading-none block rounded motion-safe:(transition) hover:(text-white) focus:(text-white outline-none)" @click.prevent="scrollDown"><iconify-icon icon="mdi:arrow-down" inline></iconify-icon></button></li>
         </ul>
         <page-section id="start" bg="assets/img/bio-craig.png">
-          <a href="https://craigerskine.com/" class="p-4 opacity-50 motion-safe:(transition) hover:(opacity-100) focus:(opacity-100 outline-none) lg:(space-x-12 flex items-center)">
+          <a href="https://craigerskine.com/" class="p-4 text-white opacity-70 motion-safe:(transition) hover:(opacity-100) focus:(opacity-100 outline-none) lg:(space-x-12 flex items-center)">
             <section><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" class="mx-auto my-3 p-3 w-24 h-24 fill-current text-white block lg:(p-4 w-48 h-48) animate-throb"><title>Craig Erskine logo</title><g fill-rule="evenodd"><path d="M42.747122,81.9990174 C58.9655226,93.344021 78.7054673,100 100,100 C121.294533,100 141.034477,93.344021 157.252882,81.9990144 C155.193825,75.4436177 152.039977,69.3730608 148.005622,64.0016292 C134.634094,74.0472141 118.012221,80 100,80 C81.9877797,80 65.3659077,74.0472146 51.9943761,64.0016357 C47.9600255,69.3730625 44.8061777,75.4436199 42.747122,81.9990174 Z" opacity=".25"></path><path d="M100,200 C44.7715223,200 0,155.228478 0,100 C0,44.7715223 44.7715223,0 100,0 C137.038592,0 169.374042,20.1365308 186.656057,50.0592979 C182.902635,56.5581213 178.439143,62.5953278 173.371615,68.0648818 C161.041547,39.7757571 132.830213,20 100,20 C55.8172178,20 20,55.8172178 20,100 C20,144.182782 55.8172178,180 100,180 C132.767816,180 160.934295,160.299342 173.301142,132.096319 C178.366895,137.552678 182.830857,143.575528 186.587453,150.059298 C169.288565,179.916659 136.989642,200 100,200 Z"></path></g></svg></section>
             <section>
-              <h1 class="mb-3 font-black leading-tight text-(4xl gray-200) lg:(mb-6 text-[calc(3vw+3vh+.5vmin)])">
+              <h1 class="mb-3 font-black leading-tight text-4xl lg:(mb-6 text-[calc(3vw+3vh+.5vmin)])">
                 {{ intro_fname }}
                 <b class="opacity-50">{{ intro_lname }}</b>
               </h1>
@@ -95,20 +98,23 @@
             </div>
             <transition>
               <div v-if="showMapGB" class="modal w-full px-6 flex items-center justify-center -space-x-4 absolute inset-0 motion-safe:(transition-all)">
-                <page-figure img="assets/img/bio-me-6th.jpg" css="-rotate-3">6th Grade</page-figure>
                 <page-figure img="assets/img/bio-me-soccer.jpg" css="rotate-1">4th Grade</page-figure>
+                <page-figure img="assets/img/bio-me-6th.jpg" css="-rotate-3">6th Grade</page-figure>
                 <page-figure img="assets/img/bio-snow-bank.jpg" css="rotate-3">Snow Banks</page-figure>
-                <page-figure img="assets/img/bio-snow.jpg" css="-rotate-2">Snow Storm <a href="#" class="w-8 h-8 bg-black text-white ring-(2 white) flex items-center justify-center absolute -top-4 -right-4 cursor-pointer rounded-full" @click.prevent="showMapGB = false"><iconify-icon icon="mdi:close" inline class="text-2xl"></iconify-icon></a></page-figure>
+                <page-figure img="assets/img/bio-snow.jpg" css="-rotate-2">Snow Storm</page-figure>
+                <a href="#" class="w-8 h-8 bg-black text-white ring-(2 white) flex items-center justify-center absolute -top-4 -right-4 cursor-pointer rounded-full" @click.prevent="showMapGB = false"><iconify-icon icon="mdi:close" inline class="text-2xl"></iconify-icon></a>
               </div>
             </transition>
             <transition>
               <div v-if="showMapDC" class="modal px-6 flex items-center justify-center space-x-8 absolute inset-0 motion-safe:(transition-all)">
-                <page-figure img="assets/img/bio-me-erskine.jpg" css="rotate-1"><a href="https://www.hmdb.org/m.asp?m=151588" class="text-blue-600 hover:(text-blue-400) focus:(text-blue-400)">Erskine Rest Area</a> - Jacksonport, WI <a href="#" class="w-8 h-8 bg-black text-white ring-(2 white) flex items-center justify-center absolute -top-4 -right-4 cursor-pointer rounded-full" @click.prevent="showMapDC = false"><iconify-icon icon="mdi:close" inline class="text-2xl"></iconify-icon></a></page-figure>
+                <page-figure img="assets/img/bio-me-erskine.jpg" css="rotate-1"><a href="https://www.hmdb.org/m.asp?m=151588" class="text-blue-600 hover:(text-blue-400) focus:(text-blue-400)">Erskine Rest Area</a> - Jacksonport, WI</page-figure>
+                <a href="#" class="w-8 h-8 bg-black text-white ring-(2 white) flex items-center justify-center absolute -top-4 -right-4 cursor-pointer rounded-full" @click.prevent="showMapDC = false"><iconify-icon icon="mdi:close" inline class="text-2xl"></iconify-icon></a>
               </div>
             </transition>
             <transition>
               <div v-if="showMapUP" class="modal px-6 flex items-center justify-center space-x-8 absolute inset-0 motion-safe:(transition-all)">
-                <page-figure img="assets/img/bio-camping.jpg" css="-rotate-2">Roughin' it <a href="#" class="w-8 h-8 bg-black text-white ring-(2 white) flex items-center justify-center absolute -top-4 -right-4 cursor-pointer rounded-full" @click.prevent="showMapUP = false"><iconify-icon icon="mdi:close" inline class="text-2xl"></iconify-icon></a></page-figure>
+                <page-figure img="assets/img/bio-camping.jpg" css="-rotate-2">Roughin' it</page-figure>
+                <a href="#" class="w-8 h-8 bg-black text-white ring-(2 white) flex items-center justify-center absolute -top-4 -right-4 cursor-pointer rounded-full" @click.prevent="showMapUP = false"><iconify-icon icon="mdi:close" inline class="text-2xl"></iconify-icon></a>
               </div>
             </transition>
           </article>
@@ -175,7 +181,7 @@
         <page-section id="end" bg="assets/img/craig-erskine-huh.png">
           <page-heading sub="End of Line">Fin</page-heading>
           <article class="w-full min-h-screen max-w-screen-md flex flex-col">
-            <ul class="my-auto px-6 w-full text-[calc(3vw+3vh+2vmin)] flex justify-center gap-5 md:(gap-16)">
+            <ul class="pt-36 px-6 w-full text-[calc(3vw+3vh+2vmin)] flex justify-center gap-5 md:(gap-16)">
               <li v-for="(item, index) in soc" class="flex">
                 <a :href="item.href" :class="'group py-8 h-full text-('+ item.color +' opacity-70) flex items-center relative motion-safe:(transition) hover:(text-opacity-100 animate-blob) focus:(text-opacity-100 animate-blob)'">
                   <template v-if="item.title == 'Craig Erskine'">
@@ -191,7 +197,7 @@
                 </a>
               </li>
             </ul>
-            <div class="mt-auto pt-8 px-6 w-full">
+            <!-- <div class="mt-auto pt-8 px-6 w-full">
               <p class="pb-8 text-(yellow-500 center) font-black uppercase">Who's Up Next</p>
               <div class="flex items-center">
                 <hr class="flex-1 opacity-20" />
@@ -205,10 +211,11 @@
                   {{ selectedPerson.name }}
                 </h1>
               </section>
-            </div>
+            </div> -->
             <figure class="absolute -bottom-4 -right-4 opacity-30 -rotate-45 motion-safe:(transition) hover:(opacity-100)"><img src="assets/img/chicken.png" alt="Chicken" /></figure>
           </article>
         </page-section>
+
       </main>
     </div>
 
@@ -324,27 +331,27 @@
         methods: {
           slug: function(text) {
             return text.toString().toLowerCase()
-            .replace(/\s+/g, '-')           // Replace spaces with -
-            .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
-            .replace(/\-\-+/g, '-')         // Replace multiple - with single -
-            .replace(/^-+/, '')             // Trim - from start of text
-            .replace(/-+$/, '');            // Trim - from end of text
+            .replace(/\s+/g, '-')     // Replace spaces with -
+            .replace(/[^\w\-]+/g, '') // Remove all non-word chars
+            .replace(/\-\-+/g, '-')   // Replace multiple - with single -
+            .replace(/^-+/, '')       // Trim - from start of text
+            .replace(/-+$/, '');      // Trim - from end of text
           },
           scrollDown() {
-            window.scrollBy(0, (document.documentElement.clientHeight * 2.5));
+            document.getElementById('app').scrollBy(0, (document.documentElement.clientHeight * 1));
           },
           scrollUp() {
-            window.scrollBy(0, -(document.documentElement.clientHeight * 2.5));
+            document.getElementById('app').scrollBy(0, -(document.documentElement.clientHeight * 1));
           },
         },
       })
       .component('page-section', {
         template: `
-          <section :id="'section-'+ id" class="h-[250vh] relative">
-            <section class="min-h-screen flex flex-col items-center justify-center sticky top-0 overflow-hidden relative">
+          <section :id="'section-'+ id" class="h-screen relative snap-center">
+            <article class="min-h-screen flex flex-col items-center justify-center sticky top-0 overflow-hidden relative">
               <slot></slot>
               <div class="scene bg-(fixed cover center) absolute inset-0 z-[-1] opacity-10" :style="((bg) ? 'background-image: url('+ bg +')' : '')"></div>
-            </section>
+            </article>
           </section>
         `,
         props: {
